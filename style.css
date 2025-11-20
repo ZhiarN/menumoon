@@ -1,3 +1,20 @@
+:root {
+  /*Themes*/
+  --color-tomato: #d04539;
+  --color-mustard: #f49e4c;
+  --color-cream: #f5ee9e;
+  --pad-1rm: 1rem;
+  --pad-2rm: 2rem;
+  --pad-3rm: 3rem;
+  --pad-4rm: 4rem;
+  --mar-1rm: 1rem;
+  --mar-2rm: 2rem;
+  --mar-3rm: 3rem;
+  --mar-4rm: 4rem;
+}
+.centered {
+  margin: 0 auto 0 auto;
+}
 body {
   background-color: #9b9b9b;
 }
