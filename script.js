@@ -1,6 +1,5 @@
 const categoryListDiv = document.querySelector(".categoryList");
 const menuDiv = document.querySelector(".menu");
-let categoryID;
 const categories = [
   {
     id: "cat1",
@@ -56,24 +55,22 @@ const categories = [
 ];
 renderCategories(categories);
 categoryListDiv.addEventListener("click", (event) => {
-  target = event.target.closest("div");
-  if (!target.classList.contains("categoryItemCard")) return;
-  selectCategory(target);
+  const card = event.target.closest(".categoryItemCard");
+  if (!card) return;
+  selectCategory(card.dataset.id);
 });
-function selectCategory(target) {
-  const isSelected = target.classList.contains("selected");
-  const selectedCategory = document.querySelector(".selected");
-  categoryID = target.dataset.id;
-  console.log("ID: " + categoryID);
-  if (isSelected) {
-    target.classList.remove("selected");
-  } else {
-    if (selectedCategory) {
-      selectedCategory.classList.remove("selected");
-    }
-    target.classList.add("selected");
-  }
+function selectCategory(categoryID) {
+  const selectedCategoryId = categoryID
+  document.querySelectorAll(".categoryItemCard").forEach(card => {
+    card.classList.toggle("selected", card.dataset.id === selectedCategoryId);
+  });
+  
+  };
+
+function renderMenuItems(categoryID) {
+menuDiv.innerHTML = ""
 }
+
 
 function renderCategories(categories) {
   categoryListDiv.innerHTML = "";
