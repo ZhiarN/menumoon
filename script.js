@@ -5,8 +5,18 @@ const categories = [
     id: "cat1",
     name: "Main Dish",
     items: [
-      { id: "item1", name: "Steak", price: 20 },
-      { id: "item2", name: "Erbazzone", price: 20 },
+      {
+        id: "item1",
+        name: "Steak",
+        price: 20,
+        image: "media/categoryIconDefault.svg",
+      },
+      {
+        id: "item2",
+        name: "Erbazzone",
+        price: 20,
+        image: "media/categoryIconDefault.svg",
+      },
     ],
     image: "media/categoryIconDefault.svg",
   },
@@ -60,17 +70,12 @@ categoryListDiv.addEventListener("click", (event) => {
   selectCategory(card.dataset.id);
 });
 function selectCategory(categoryID) {
-  const selectedCategoryId = categoryID
-  document.querySelectorAll(".categoryItemCard").forEach(card => {
+  const selectedCategoryId = categoryID;
+  document.querySelectorAll(".categoryItemCard").forEach((card) => {
     card.classList.toggle("selected", card.dataset.id === selectedCategoryId);
   });
-  
-  };
-
-function renderMenuItems(categoryID) {
-menuDiv.innerHTML = ""
+  renderMenuItems(categoryID);
 }
-
 
 function renderCategories(categories) {
   categoryListDiv.innerHTML = "";
@@ -88,5 +93,32 @@ function renderCategories(categories) {
     catContainer.appendChild(img);
     catContainer.appendChild(title);
     categoryListDiv.appendChild(catContainer);
+  });
+}
+
+function renderMenuItems(categoryID) {
+  menuDiv.innerHTML = "";
+  const category = categories.find((cat) => cat.id === categoryID);
+  if (!category || category.items.length === 0) {
+    menuDiv.textContent = "No items available";
+    return;
+  }
+  category.items.forEach((item) => {
+    const itemCard = document.createElement("div");
+    itemCard.className = "menuItem";
+    itemCard.dataset.id = item.id;
+    const itemImg = document.createElement("img");
+    itemImg.className = "itemImg";
+    itemImg.src = item.image;
+    itemImg.alt = item.name;
+    const itemTitle = document.createElement("p");
+    itemTitle.className = "itemTitle";
+    const itemPrice = document.createElement("span");
+    itemPrice.className = "itemPrice";
+    itemPrice.textContent = item.price;
+    itemCard.appendChild(itemImg);
+    itemCard.appendChild(itemTitle);
+    itemCard.appendChild(itemPrice);
+    menuDiv.appendChild(itemCard);
   });
 }
