@@ -11,12 +11,13 @@
     --mar-3rm: 3rem;
     --mar-4rm: 4rem;
 }
-.centered {
-}
+
+.centered {}
 
 .selected {
     border: 1px solid black;
 }
+
 .wrapper {
     /* background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%); */
     background-color: var(--color-mustard);
@@ -25,6 +26,7 @@
     width: 100%;
     height: 100vh;
 }
+
 .menu {
     display: flex;
     flex-direction: column;
@@ -37,6 +39,7 @@
     border-radius: 30px;
     overflow-y: auto;
 }
+
 .menuSidebar {
     display: flex;
     flex-direction: column;
@@ -51,9 +54,11 @@
 .shopLogo {
     width: clamp(10px, 100%, 100px);
 }
+
 .shopLogoImg {
     width: 100%;
 }
+
 .shopName {
     font-size: clamp(1rem, 3vw, 2.6rem);
     font-weight: bold;
@@ -66,23 +71,27 @@
     overflow-y: scroll;
     width: 100%;
 }
+
 ::-webkit-scrollbar {
     display: none;
 }
-::-webkit-scrollbar-corner {
-}
+
+::-webkit-scrollbar-corner {}
+
 ::-webkit-scrollbar-thumb {
     /* backdrop-filter: blur(6px) saturate(200%);
   -webkit-backdrop-filter: blur(3px) saturate(220%);
   background-color: #bb7737;
   border-radius: 500px; */
 }
+
 ::-webkit-scrollbar-track-piece {
     /* backdrop-filter: blur(5px) saturate(200%);
   -webkit-backdrop-filter: blur(3px) saturate(130%);
   background-color: rgba(165, 165, 165, 0.158);
   border-radius: 500px; */
 }
+
 .categoryItemCard {
     display: flex;
     flex-direction: column;
@@ -100,6 +109,7 @@
 .categoryImg {
     width: clamp(40px, 100%, 150px);
 }
+
 .glass {
     background: rgba(124, 118, 118, 0.24);
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
@@ -131,11 +141,13 @@
     justify-content: center;
     background-color: #f49e4c;
 }
+
 .face {
     width: 100px;
     height: 100px;
     animation: spin 1s linear infinite;
 }
+
 .centered {
     position: absolute;
     top: 0;
@@ -143,10 +155,4 @@
     right: 0;
     bottom: 0;
     margin: auto;
-}
-
-@keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
 }
