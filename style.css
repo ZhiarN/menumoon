@@ -1,7 +1,5 @@
 :root {
-  /*Themes*/
-  --color-tomato: #d04539;
-  --color-mustard: #5c3819;
+  --color-main: hsl(60, 8%, 83%);
   --pad-1rm: 1rem;
   --pad-2rm: 2rem;
   --pad-3rm: 3rem;
@@ -12,16 +10,12 @@
   --mar-4rm: 4rem;
 }
 
-.centered {
-}
-
 .selected {
   border: 1px solid black;
 }
 
 .wrapper {
-  /* background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%); */
-  background-color: var(--color-mustard);
+  background-color: var(--color-main);
   display: flex;
   align-items: center;
   width: 100%;
@@ -35,7 +29,7 @@
   width: 70%;
   text-align: center;
   padding: 0.6rem;
-  margin: 0 0.6rem;
+  margin: 0 1rem;
   height: 90vh;
   border-radius: 30px;
   overflow-y: auto;
@@ -77,23 +71,6 @@
   display: none;
 }
 
-::-webkit-scrollbar-corner {
-}
-
-::-webkit-scrollbar-thumb {
-  /* backdrop-filter: blur(6px) saturate(200%);
-  -webkit-backdrop-filter: blur(3px) saturate(220%);
-  background-color: #bb7737;
-  border-radius: 500px; */
-}
-
-::-webkit-scrollbar-track-piece {
-  /* backdrop-filter: blur(5px) saturate(200%);
-  -webkit-backdrop-filter: blur(3px) saturate(130%);
-  background-color: rgba(165, 165, 165, 0.158);
-  border-radius: 500px; */
-}
-
 .categoryItemCard {
   display: flex;
   flex-direction: column;
@@ -113,11 +90,11 @@
 }
 
 .glass {
-  background: rgba(124, 118, 118, 0.24);
+  background: rgba(132, 128, 128, 0.15);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(6px) saturate(150%);
+  backdrop-filter: blur(22px) saturate(150%);
   -webkit-backdrop-filter: blur(7.7px);
-  border: 1px solid rgb(49, 49, 48);
+  /* border: 1px solid rgb(49, 49, 48); */
 }
 
 .menuItem {
@@ -133,28 +110,4 @@
 
 .itemImg {
   max-width: 100px;
-}
-
-#loading {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f49e4c;
-}
-
-.face {
-  width: 100px;
-  height: 100px;
-  animation: spin 1s linear infinite;
-}
-
-.centered {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
 }

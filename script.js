@@ -113,6 +113,7 @@ function renderMenuItems(categoryID) {
     itemImg.alt = item.name;
     const itemTitle = document.createElement("p");
     itemTitle.className = "itemTitle";
+    itemTitle.textContent = item.name;
     const itemPrice = document.createElement("span");
     itemPrice.className = "itemPrice";
     itemPrice.textContent = item.price;
