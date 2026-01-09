@@ -1,5 +1,6 @@
 const categoryListDiv = document.querySelector(".categoryList");
 const menuDiv = document.querySelector(".menu");
+
 const categories = [
   {
     id: "cat1",
@@ -63,25 +64,32 @@ const categories = [
     items: [],
   },
 ];
+const state = {
+  currentUserID: null,
+selectedCategoryId: null,
+};
+
 renderCategories(categories);
 categoryListDiv.addEventListener("click", (event) => {
-  const card = event.target.closest(".categoryItemCard");
+  const card = event.target.closest(".categoryCard");
+  state.selectedCategoryId = card.dataset.id;
+  console.log(state.selectedCategoryId)
   if (!card) return;
-  selectCategory(card.dataset.id);
+  selectCategory(state.selectedCategoryId);
 });
-function selectCategory(categoryID) {
-  const selectedCategoryId = categoryID;
-  document.querySelectorAll(".categoryItemCard").forEach((card) => {
-    card.classList.toggle("selected", card.dataset.id === selectedCategoryId);
+function selectCategory() {
+  
+  document.querySelectorAll(".categoryCard").forEach((card) => {
+    card.classList.toggle("selected", card.dataset.id === state.selectedCategoryId);
   });
-  renderMenuItems(categoryID);
+  renderMenuItems(state.selectedCategoryId);
 }
 
 function renderCategories(categories) {
   categoryListDiv.innerHTML = "";
   categories.forEach((category) => {
     const catContainer = document.createElement("div");
-    catContainer.className = "categoryItemCard";
+    catContainer.className = "categoryCard";
     catContainer.dataset.id = category.id;
     const img = document.createElement("img");
     img.className = "categoryImg";
@@ -123,3 +131,17 @@ function renderMenuItems(categoryID) {
     menuDiv.appendChild(itemCard);
   });
 }
+
+// function renderUI() {
+//   renderCategories();
+//   renderMenuItems();
+// }
+
+function userLogin() {
+
+  const users = {
+    name: "Cafe Moon",
+    id: 1,
+  }
+  
+  }
