@@ -1,6 +1,6 @@
 const categoryListDiv = document.querySelector(".categoryList");
 const menuDiv = document.querySelector(".menu");
-
+const wrapper = document.querySelector(".wrapper");
 const categories = [
   {
     id: "cat1",
@@ -66,21 +66,23 @@ const categories = [
 ];
 const state = {
   currentUserID: null,
-selectedCategoryId: null,
+  selectedCategoryId: null,
 };
 
 renderCategories(categories);
 categoryListDiv.addEventListener("click", (event) => {
   const card = event.target.closest(".categoryCard");
   state.selectedCategoryId = card.dataset.id;
-  console.log(state.selectedCategoryId)
+  console.log(state.selectedCategoryId);
   if (!card) return;
   selectCategory(state.selectedCategoryId);
 });
 function selectCategory() {
-  
   document.querySelectorAll(".categoryCard").forEach((card) => {
-    card.classList.toggle("selected", card.dataset.id === state.selectedCategoryId);
+    card.classList.toggle(
+      "selected",
+      card.dataset.id === state.selectedCategoryId
+    );
   });
   renderMenuItems(state.selectedCategoryId);
 }
@@ -131,17 +133,30 @@ function renderMenuItems(categoryID) {
     menuDiv.appendChild(itemCard);
   });
 }
-
-// function renderUI() {
-//   renderCategories();
-//   renderMenuItems();
-// }
-
-function userLogin() {
-
-  const users = {
-    name: "Cafe Moon",
-    id: 1,
-  }
-  
-  }
+function editMode() {
+  const editMenu = document.createElement("aside");
+  editMenu.className = "editMenu glass";
+  const addCategory = document.createElement("div");
+  addCategory.className = "editButton";
+  addCategory.textContent = "Add";
+  const input = document.createElement("input");
+  input.className = "inputBox";
+  editMenu.appendChild(addCategory);
+  editMenu.appendChild(input);
+  const orderedList = document.createElement("ul");
+  orderedList.className = "menuTree";
+  categories.forEach((category) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `Category ID: ${category.id} / Category Name: ${category.name}`;
+    listItem.className = "menuTreeItems";
+    const removeButton = document.createElement("button");
+    removeButton.dataset.id = category.id;
+    removeButton.className = "removeButton";
+    removeButton.textContent = "Delete";
+    listItem.appendChild(removeButton);
+    orderedList.appendChild(listItem);
+    editMenu.appendChild(orderedList);
+  });
+  wrapper.appendChild(editMenu);
+}
+editMode();
