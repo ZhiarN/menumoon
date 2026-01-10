@@ -145,7 +145,6 @@ function editMode() {
   const newCategoryID = document.createElement("input");
   newCategoryID.className = "inputBox";
   newCategoryID.placeholder = "New Category ID";
-
   const newCategoryIMG = document.createElement("input");
   newCategoryIMG.className = "inputBox";
   newCategoryIMG.placeholder = "New Category IMG";
@@ -161,6 +160,7 @@ function editMode() {
       id: id,
       name: name,
       image: img,
+      items: [],
     };
     categories.push(newCategory);
     renderCategories(categories);
