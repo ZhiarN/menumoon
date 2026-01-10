@@ -139,24 +139,64 @@ function editMode() {
   const addCategory = document.createElement("div");
   addCategory.className = "editButton";
   addCategory.textContent = "Add";
-  const input = document.createElement("input");
-  input.className = "inputBox";
+  const newCategoryName = document.createElement("input");
+  newCategoryName.className = "inputBox";
+  newCategoryName.placeholder = "New Category Name";
+  const newCategoryID = document.createElement("input");
+  newCategoryID.className = "inputBox";
+  newCategoryID.placeholder = "New Category ID";
+
+  const newCategoryIMG = document.createElement("input");
+  newCategoryIMG.className = "inputBox";
+  newCategoryIMG.placeholder = "New Category IMG";
   editMenu.appendChild(addCategory);
-  editMenu.appendChild(input);
+  editMenu.appendChild(newCategoryName);
+  editMenu.appendChild(newCategoryID);
+  editMenu.appendChild(newCategoryIMG);
+  addCategory.addEventListener("click", function (name, id, img) {
+    name = newCategoryName.value;
+    id = newCategoryID.value;
+    img = newCategoryIMG.value;
+    const newCategory = {
+      id: id,
+      name: name,
+      image: img,
+    };
+    categories.push(newCategory);
+    renderCategories(categories);
+  });
   const orderedList = document.createElement("ul");
   orderedList.className = "menuTree";
   categories.forEach((category) => {
     const listItem = document.createElement("li");
-    listItem.textContent = `Category ID: ${category.id} / Category Name: ${category.name}`;
+    listItem.textContent = `ID: ${category.id} / Name: ${category.name}`;
     listItem.className = "menuTreeItems";
-    const removeButton = document.createElement("button");
-    removeButton.dataset.id = category.id;
-    removeButton.className = "removeButton";
-    removeButton.textContent = "Delete";
-    listItem.appendChild(removeButton);
+    // const removeButton = document.createElement("button");
+    // removeButton.dataset.id = category.id;
+    // removeButton.className = "removeButton";
+    // removeButton.textContent = "Delete";
+    // listItem.appendChild(removeButton);
     orderedList.appendChild(listItem);
     editMenu.appendChild(orderedList);
+    //     removeButton.addEventListener("click", (event) => {
+    //     const targetCategory = event.target.dataset.id;
+    //     console.log(targetCategory);
+    //     if (!category.id == targetCategory) {
+    //       return;
+    //     }
+    //     else{
+    //       const remove = categories.find(category => category.id == targetCategory);
+    //       console.log(remove);
+    //       if(remove === -1) return;
+    //       else {
+    //  categories.splice(remove, 1);
+    //       renderCategories(categories);
+    //       }
+
+    //     }
+    //   })
+    //   });
+    wrapper.appendChild(editMenu);
   });
-  wrapper.appendChild(editMenu);
 }
 editMode();
