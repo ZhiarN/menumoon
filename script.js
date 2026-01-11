@@ -77,6 +77,7 @@ categoryListDiv.addEventListener("click", (event) => {
   if (!card) return;
   selectCategory(state.selectedCategoryId);
 });
+
 function selectCategory() {
   document.querySelectorAll(".categoryCard").forEach((card) => {
     card.classList.toggle(
@@ -133,12 +134,15 @@ function renderMenuItems(categoryID) {
     menuDiv.appendChild(itemCard);
   });
 }
+
 function editMode() {
-  const editMenu = document.createElement("aside");
-  editMenu.className = "editMenu glass";
-  const addCategory = document.createElement("div");
-  addCategory.className = "editButton";
-  addCategory.textContent = "Add";
+  const editPanel = document.createElement("aside");
+  editPanel.className = "editPanel glass";
+  const newCategoryDiv = document.createElement("div");
+  newCategoryDiv.className = "newCategoryPanel";
+  const addCategoryButton = document.createElement("button");
+  addCategoryButton.className = "addCategoryBtn";
+  addCategoryButton.textContent = "Add Category";
   const newCategoryName = document.createElement("input");
   newCategoryName.className = "inputBox";
   newCategoryName.placeholder = "New Category Name";
@@ -147,12 +151,13 @@ function editMode() {
   newCategoryID.placeholder = "New Category ID";
   const newCategoryIMG = document.createElement("input");
   newCategoryIMG.className = "inputBox";
-  newCategoryIMG.placeholder = "New Category IMG";
-  editMenu.appendChild(addCategory);
-  editMenu.appendChild(newCategoryName);
-  editMenu.appendChild(newCategoryID);
-  editMenu.appendChild(newCategoryIMG);
-  addCategory.addEventListener("click", function (name, id, img) {
+  newCategoryIMG.placeholder = "New Category IM URL";
+  newCategoryDiv.appendChild(addCategoryButton);
+  newCategoryDiv.appendChild(newCategoryName);
+  newCategoryDiv.appendChild(newCategoryID);
+  newCategoryDiv.appendChild(newCategoryIMG);
+  editPanel.appendChild(newCategoryDiv);
+  addCategoryButton.addEventListener("click", function (name, id, img) {
     name = newCategoryName.value;
     id = newCategoryID.value;
     img = newCategoryIMG.value;
@@ -162,41 +167,27 @@ function editMode() {
       image: img,
       items: [],
     };
+
     categories.push(newCategory);
     renderCategories(categories);
   });
-  const orderedList = document.createElement("ul");
-  orderedList.className = "menuTree";
+  const deleteCategoryDiv = document.createElement("div");
+  deleteCategoryDiv.className = "removeCategoryPanel";
+  const categoryDropdown = document.createElement("select");
+  categoryDropdown.className = "categoryDropdown";
   categories.forEach((category) => {
-    const listItem = document.createElement("li");
-    listItem.textContent = `ID: ${category.id} / Name: ${category.name}`;
-    listItem.className = "menuTreeItems";
-    // const removeButton = document.createElement("button");
-    // removeButton.dataset.id = category.id;
-    // removeButton.className = "removeButton";
-    // removeButton.textContent = "Delete";
-    // listItem.appendChild(removeButton);
-    orderedList.appendChild(listItem);
-    editMenu.appendChild(orderedList);
-    //     removeButton.addEventListener("click", (event) => {
-    //     const targetCategory = event.target.dataset.id;
-    //     console.log(targetCategory);
-    //     if (!category.id == targetCategory) {
-    //       return;
-    //     }
-    //     else{
-    //       const remove = categories.find(category => category.id == targetCategory);
-    //       console.log(remove);
-    //       if(remove === -1) return;
-    //       else {
-    //  categories.splice(remove, 1);
-    //       renderCategories(categories);
-    //       }
-
-    //     }
-    //   })
-    //   });
-    wrapper.appendChild(editMenu);
+    const dropdownItem = document.createElement("option");
+    dropdownItem.dataset.id = category.id;
+    dropdownItem.textContent = category.name;
+    dropdownItem.className = "dropdownItem";
+    categoryDropdown.appendChild(dropdownItem);
+    deleteCategoryDiv.appendChild(categoryDropdown);
+    editPanel.appendChild(deleteCategoryDiv);
+    wrapper.appendChild(editPanel);
   });
+  const removeButton = document.createElement("button");
+  removeButton.className = "removeCategoryBtn";
+  removeButton.textContent = "Delete Category";
+  deleteCategoryDiv.appendChild(removeButton);
 }
 editMode();
