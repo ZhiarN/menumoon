@@ -45,6 +45,20 @@
   padding: 0.4rem;
 }
 
+.menuTree {
+  width: 100%;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.listCategory {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.listItem {
+  text-align: center;
+}
 .wrapper {
   background-color: var(--color-main);
   display: flex;
