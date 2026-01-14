@@ -60,6 +60,7 @@
   text-align: center;
 }
 .wrapper {
+  user-select: none;
   background-color: var(--color-main);
   display: flex;
   align-items: center;

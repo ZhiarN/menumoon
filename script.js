@@ -72,10 +72,15 @@ const state = {
 renderCategories(categories);
 categoryListDiv.addEventListener("click", (event) => {
   const card = event.target.closest(".categoryCard");
+  if (!card) return;
+  if (card.dataset.id === state.selectedCategoryId) {
+    card.classList.remove("selected");
+    state.selectedCategoryId = null;
+    return;
+  }
   state.selectedCategoryId = card.dataset.id;
   console.log(state.selectedCategoryId);
-  if (!card) return;
-  selectCategory(state.selectedCategoryId);
+  selectCategory();
 });
 
 function selectCategory() {
@@ -136,6 +141,7 @@ function renderMenuItems(categoryID) {
 }
 
 function editMode() {
+  if (document.querySelector(".editPanel")) return;
   const editPanel = document.createElement("aside");
   editPanel.className = "editPanel glass";
   //New Category
@@ -150,7 +156,7 @@ function editMode() {
   newCategoryName.id = "newCategoryName";
   const newCategoryIMG = document.createElement("input");
   newCategoryIMG.className = "inputBox";
-  newCategoryIMG.placeholder = "New Category IMG URL";
+  newCategoryIMG.placeholder = "IMG Path"
   newCategoryIMG.id = "newCategoryIMG";
   addCategoryButton.addEventListener("click", function (name, id, img) {
     name = newCategoryName.value;
@@ -199,7 +205,7 @@ function editMode() {
   newCategoryDiv.appendChild(newCategoryIMG);
   editPanel.appendChild(deleteCategoryDiv);
   editPanel.appendChild(newCategoryDiv);
-  editPanel.appendChild(menuTreeList)
+  editPanel.appendChild(menuTreeList);
   wrapper.appendChild(editPanel);
   removeButton.addEventListener("click", removeCategory);
 }
@@ -209,10 +215,19 @@ function createCategoryID() {
 
 function removeCategory() {
   if (state.selectedCategoryId == null)
-    return console.log("No Category Selected");
+    return alert("No Category Selected");
   const category = categories.findIndex(
-    (cat) => cat.id == state.selectedCategoryId
+    cat => cat.id === state.selectedCategoryId
   );
+  if (category == -1) return;
+  console.log(category)
   categories.splice(category, 1);
+  state.selectedCategoryId = null;
   renderCategories(categories);
+}
+
+function renderUI() {
+  renderCategories();
+  renderMenuItems;
+  
 }
