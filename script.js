@@ -79,7 +79,6 @@ categoryListDiv.addEventListener("click", (event) => {
     return;
   }
   state.selectedCategoryId = card.dataset.id;
-  console.log(state.selectedCategoryId);
   selectCategory();
 });
 
@@ -151,39 +150,68 @@ function editMode() {
   addCategoryButton.className = "addCategoryBtn";
   addCategoryButton.textContent = "Add Category";
   const newCategoryName = document.createElement("input");
-  newCategoryName.className = "inputBox";
+  newCategoryName.className = "input";
   newCategoryName.placeholder = "New Category Name";
   newCategoryName.id = "newCategoryName";
   const newCategoryIMG = document.createElement("input");
-  newCategoryIMG.className = "inputBox";
-  newCategoryIMG.placeholder = "IMG Path"
+  newCategoryIMG.className = "input";
+  newCategoryIMG.placeholder = "IMG Path";
   newCategoryIMG.id = "newCategoryIMG";
-  addCategoryButton.addEventListener("click", function (name, id, img) {
-    name = newCategoryName.value;
-    id = createCategoryID();
-    img = newCategoryIMG.value;
+  addCategoryButton.addEventListener("click", function () {
     const newCategory = {
-      id: id,
-      name: name,
-      image: img,
+      id: createCategoryID(),
+      name: newCategoryName.value,
+      image: newCategoryIMG.value,
       items: [],
     };
 
     categories.push(newCategory);
     renderCategories(categories);
+    renderList();
   });
-  //Delete Category
-  const deleteCategoryDiv = document.createElement("div");
-  deleteCategoryDiv.className = "removeCategoryPanel";
 
   //List
-  const menuTreeList = document.createElement("dl");
+
+  //Remove Category
+  const deleteCategoryDiv = document.createElement("div");
+  deleteCategoryDiv.className = "removeCategoryPanel";
+  const removeButton = document.createElement("button");
+  removeButton.className = "removeCategoryBtn";
+  removeButton.textContent = "Delete Category";
+  //Add to DOM
+  deleteCategoryDiv.appendChild(removeButton);
+  newCategoryDiv.appendChild(addCategoryButton);
+  newCategoryDiv.appendChild(newCategoryName);
+  newCategoryDiv.appendChild(newCategoryIMG);
+  editPanel.appendChild(deleteCategoryDiv);
+  editPanel.appendChild(newCategoryDiv);
+  wrapper.appendChild(editPanel);
+  removeButton.addEventListener("click", removeCategory);
+  renderList();
+}
+function createCategoryID() {
+  return `cat${categories.length + 1}`;
+}
+
+function removeCategory() {
+  if (state.selectedCategoryId == null) return alert("No Category Selected");
+  const category = categories.findIndex(
+    (cat) => cat.id === state.selectedCategoryId
+  );
+  if (category == -1) return;
+  categories.splice(category, 1);
+  state.selectedCategoryId = null;
+  renderCategories(categories);
+  renderList();
+}
+
+function renderList() {
+  const editPanel = document.querySelector(".editPanel");
+  const menuTree = document.querySelector(".menuTree")
+  if (menuTree) {editPanel.removeChild(menuTree)};
+    const menuTreeList = document.createElement("dl");
   menuTreeList.className = "menuTree";
   categories.forEach((category) => {
-    const dropdownItem = document.createElement("option");
-    dropdownItem.dataset.id = category.id;
-    dropdownItem.textContent = category.name;
-    dropdownItem.className = "dropdownItem";
     const categoryTree = document.createElement("dt");
     menuTreeList.appendChild(categoryTree);
     categoryTree.textContent = category.name;
@@ -195,39 +223,5 @@ function editMode() {
       menuTreeList.appendChild(itemTree);
     });
   });
-  const removeButton = document.createElement("button");
-  removeButton.className = "removeCategoryBtn";
-  removeButton.textContent = "Delete Category";
-  //Add to DOM
-  deleteCategoryDiv.appendChild(removeButton);
-  newCategoryDiv.appendChild(addCategoryButton);
-  newCategoryDiv.appendChild(newCategoryName);
-  newCategoryDiv.appendChild(newCategoryIMG);
-  editPanel.appendChild(deleteCategoryDiv);
-  editPanel.appendChild(newCategoryDiv);
   editPanel.appendChild(menuTreeList);
-  wrapper.appendChild(editPanel);
-  removeButton.addEventListener("click", removeCategory);
-}
-function createCategoryID() {
-  return `cat${categories.length + 1}`;
-}
-
-function removeCategory() {
-  if (state.selectedCategoryId == null)
-    return alert("No Category Selected");
-  const category = categories.findIndex(
-    cat => cat.id === state.selectedCategoryId
-  );
-  if (category == -1) return;
-  console.log(category)
-  categories.splice(category, 1);
-  state.selectedCategoryId = null;
-  renderCategories(categories);
-}
-
-function renderUI() {
-  renderCategories();
-  renderMenuItems;
-  
 }
