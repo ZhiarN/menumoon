@@ -76,6 +76,7 @@ categoryListDiv.addEventListener("click", (event) => {
   if (card.dataset.id === state.selectedCategoryId) {
     card.classList.remove("selected");
     state.selectedCategoryId = null;
+    menuDiv.innerHTML = "";
     return;
   }
   state.selectedCategoryId = card.dataset.id;
@@ -111,9 +112,11 @@ function renderCategories() {
   });
 }
 
-function renderMenuItems(categoryID) {
+function renderMenuItems() {
   menuDiv.innerHTML = "";
-  const category = categories.find((cat) => cat.id === categoryID);
+  const category = categories.find(
+    (cat) => cat.id === state.selectedCategoryId
+  );
   if (!category || category.items.length === 0) {
     menuDiv.textContent = "No items available";
     return;
@@ -145,9 +148,9 @@ function editMode() {
   editPanel.className = "editPanel glass";
   //New Category
   const newCategoryDiv = document.createElement("div");
-  newCategoryDiv.className = "newCategoryPanel";
+  newCategoryDiv.className = "modifyPanel";
   const addCategoryButton = document.createElement("button");
-  addCategoryButton.className = "addCategoryBtn";
+  addCategoryButton.className = "modifyBtns";
   addCategoryButton.textContent = "Add Category";
   const newCategoryName = document.createElement("input");
   newCategoryName.className = "input";
@@ -157,27 +160,39 @@ function editMode() {
   newCategoryIMG.className = "input";
   newCategoryIMG.placeholder = "IMG Path";
   newCategoryIMG.id = "newCategoryIMG";
-  addCategoryButton.addEventListener("click", function () {
-    const newCategory = {
-      id: createCategoryID(),
-      name: newCategoryName.value,
-      image: newCategoryIMG.value,
-      items: [],
-    };
-
-    categories.push(newCategory);
-    renderCategories(categories);
-    renderList();
-  });
-
-  //List
-
+  addCategoryButton.addEventListener("click", addCategory);
   //Remove Category
   const deleteCategoryDiv = document.createElement("div");
-  deleteCategoryDiv.className = "removeCategoryPanel";
+  deleteCategoryDiv.className = "modifyPanel";
   const removeButton = document.createElement("button");
   removeButton.className = "removeCategoryBtn";
   removeButton.textContent = "Delete Category";
+  //Items
+  const newItemDiv = document.createElement("div");
+  newItemDiv.className = "modifyPanel";
+  const addItemButton = document.createElement("button");
+  addItemButton.className = "modfiyBtns";
+  addItemButton.textContent = "Add Item";
+  const newItemName = document.createElement("input");
+  newItemName.className = "input";
+  newItemName.id = "newItemName";
+  const newItemID = document.createElement("input");
+  newItemID.className = "input";
+  newItemID.id = "newItemID";
+
+  const newItemPrice = document.createElement("input");
+  newItemPrice.className = "input";
+  newItemPrice.id = "newItemPrice";
+  const newItemIMG = document.createElement("input");
+  newItemIMG.className = "input";
+  newItemIMG.id = "newItemIMG";
+  newItemDiv.appendChild(addItemButton);
+  newItemDiv.appendChild(newItemName);
+  newItemDiv.appendChild(newItemID);
+  newItemDiv.appendChild(newItemPrice);
+  newItemDiv.appendChild(newItemIMG);
+  addItemButton.addEventListener("click", addItem);
+
   //Add to DOM
   deleteCategoryDiv.appendChild(removeButton);
   newCategoryDiv.appendChild(addCategoryButton);
@@ -185,6 +200,7 @@ function editMode() {
   newCategoryDiv.appendChild(newCategoryIMG);
   editPanel.appendChild(deleteCategoryDiv);
   editPanel.appendChild(newCategoryDiv);
+  editPanel.appendChild(newItemDiv);
   wrapper.appendChild(editPanel);
   removeButton.addEventListener("click", removeCategory);
   renderList();
@@ -226,4 +242,38 @@ function renderList() {
     });
   });
   editPanel.appendChild(menuTreeList);
+}
+
+function addCategory() {
+  const newCategory = {
+    id: `cat${categories.length + 1}`,
+    name: newCategoryName.value,
+    image: newCategoryIMG.value,
+    items: [],
+  };
+
+  categories.push(newCategory);
+  renderCategories(categories);
+  renderList();
+}
+
+function addItem() {
+  if (state.selectedCategoryId === null) {
+    alert("No Category Selected");
+    return;
+  }
+  const category = categories.find(
+    (cat) => cat.id === state.selectedCategoryId
+  );
+
+  const newItem = {
+    id: `${category.id}_item${category.items.length + 1}`,
+    name: newItemName.value,
+    price: newItemPrice.value,
+    image: newItemIMG.value,
+  };
+
+  category.items.push(newItem);
+  renderMenuItems();
+  renderList();
 }
