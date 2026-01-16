@@ -19,12 +19,12 @@
   gap: 1rem;
   width: 30%;
   height: 100vh;
-  .newCategoryPanel {
+  .modifyPanel {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: 0.4rem;
-    .addCategoryBtn {
+    .modifyBtns {
       border: 1px solid black;
       width: 100%;
     }
@@ -33,14 +33,6 @@
     }
   }
 
-  .removeCategoryPanel {
-    display: flex;
-    flex-direction: column;
-    margin: 0.4rem;
-    .removeCategoryBtn {
-      padding: 0.4rem;
-    }
-  }
 
   .menuTree {
     width: 100%;
