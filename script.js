@@ -207,9 +207,11 @@ function removeCategory() {
 
 function renderList() {
   const editPanel = document.querySelector(".editPanel");
-  const menuTree = document.querySelector(".menuTree")
-  if (menuTree) {editPanel.removeChild(menuTree)};
-    const menuTreeList = document.createElement("dl");
+  const menuTree = document.querySelector(".menuTree");
+  if (menuTree) {
+    editPanel.removeChild(menuTree);
+  }
+  const menuTreeList = document.createElement("dl");
   menuTreeList.className = "menuTree";
   categories.forEach((category) => {
     const categoryTree = document.createElement("dt");
