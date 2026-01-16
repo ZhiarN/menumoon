@@ -1,5 +1,5 @@
 :root {
-  --color-main: hsl(0, 15%, 82%);
+  --color-main: hsl(82, 17%, 44%);
   --pad-1rm: 1rem;
   --pad-2rm: 2rem;
   --pad-3rm: 3rem;
@@ -19,46 +19,45 @@
   gap: 1rem;
   width: 30%;
   height: 100vh;
-}
-.newCategoryPanel {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0.4rem;
+  .newCategoryPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0.4rem;
+    .addCategoryBtn {
+      border: 1px solid black;
+      width: 100%;
+    }
+    .input {
+      width: 100%;
+    }
+  }
+
+  .removeCategoryPanel {
+    display: flex;
+    flex-direction: column;
+    margin: 0.4rem;
+    .removeCategoryBtn {
+      padding: 0.4rem;
+    }
+  }
+
+  .menuTree {
+    width: 100%;
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .listCategory {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .listItem {
+      text-align: center;
+    }
+  }
 }
 
-.addCategoryBtn {
-  border: 1px solid black;
-  width: 100%;
-}
-.input {
-  width: 100%;
-}
-
-.removeCategoryPanel {
-  display: flex;
-  flex-direction: column;
-  margin: 0.4rem;
-}
-
-.removeCategoryBtn {
-  padding: 0.4rem;
-}
-
-.menuTree {
-  width: 100%;
-  padding: 0.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.listCategory {
-  font-weight: bold;
-  font-size: 1rem;
-}
-.listItem {
-  text-align: center;
-}
 .wrapper {
   user-select: none;
   background-color: var(--color-main);
@@ -79,6 +78,20 @@
   height: 90vh;
   border-radius: 30px;
   overflow-y: auto;
+  .menuItem {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    max-width: 100%;
+    max-height: 100px;
+  }
+
+  .itemImg {
+    max-width: 100px;
+  }
 }
 
 .menuSidebar {
@@ -86,31 +99,30 @@
   flex-direction: column;
   align-items: center;
   padding: clamp(0.2rem, 0.4rem, 0.6rem);
-  min-width: 30%;
+  width: 30%;
   border-radius: 0px 30px 30px 0px;
   text-align: center;
   height: 90vh;
-}
+  .shopLogo {
+    width: clamp(10px, 100%, 100px);
+  }
 
-.shopLogo {
-  width: clamp(10px, 100%, 100px);
-}
+  .shopLogoImg {
+    width: 100%;
+  }
 
-.shopLogoImg {
-  width: 100%;
-}
+  .shopName {
+    font-size: clamp(1rem, 5vw, 2.6rem);
+    font-weight: bold;
+  }
 
-.shopName {
-  font-size: clamp(1rem, 3vw, 2.6rem);
-  font-weight: bold;
-}
-
-.categoryList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  overflow-y: scroll;
-  width: 100%;
+  .categoryList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    overflow-y: scroll;
+    width: 100%;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -124,15 +136,14 @@
   width: 100%;
   border-radius: 20px;
   padding: clamp(0.2rem, 0.6rem, 1.2rem);
-}
+  .categoryTitle {
+    font-size: clamp(1rem, 5vw, 2rem);
+    font-weight: normal;
+  }
 
-.categoryTitle {
-  font-size: clamp(1rem, 5vw, 2rem);
-  font-weight: normal;
-}
-
-.categoryImg {
-  width: clamp(40px, 100%, 150px);
+  .categoryImg {
+    width: clamp(40px, 100%, 150px);
+  }
 }
 
 .glass {
@@ -140,19 +151,4 @@
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(22px) saturate(150%);
   -webkit-backdrop-filter: blur(7.7px);
-}
-
-.menuItem {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  justify-items: center;
-  max-width: 100%;
-  max-height: 100px;
-}
-
-.itemImg {
-  max-width: 100px;
 }
