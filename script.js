@@ -1,6 +1,6 @@
 const categoryListDiv = document.querySelector(".categoryList");
 const menuDiv = document.querySelector(".menu");
-const wrapper = document.querySelector(".wrapper");
+const wrapper = document.querySelector(".main");
 const categories = [
   {
     id: "cat1",
@@ -68,7 +68,16 @@ const state = {
   currentUserID: null,
   selectedCategoryId: null,
 };
-
+document
+  .querySelector(".editModeToggleButton")
+  .addEventListener("click", function () {
+    const editPanel = document.querySelector(".editPanel");
+    if (wrapper.contains(editPanel)) {
+      wrapper.removeChild(editPanel);
+    } else {
+      editMode();
+    }
+  });
 renderCategories(categories);
 categoryListDiv.addEventListener("click", (event) => {
   const card = event.target.closest(".categoryCard");
@@ -176,10 +185,6 @@ function editMode() {
   const newItemName = document.createElement("input");
   newItemName.className = "input";
   newItemName.id = "newItemName";
-  const newItemID = document.createElement("input");
-  newItemID.className = "input";
-  newItemID.id = "newItemID";
-
   const newItemPrice = document.createElement("input");
   newItemPrice.className = "input";
   newItemPrice.id = "newItemPrice";
@@ -188,7 +193,6 @@ function editMode() {
   newItemIMG.id = "newItemIMG";
   newItemDiv.appendChild(addItemButton);
   newItemDiv.appendChild(newItemName);
-  newItemDiv.appendChild(newItemID);
   newItemDiv.appendChild(newItemPrice);
   newItemDiv.appendChild(newItemIMG);
   addItemButton.addEventListener("click", addItem);
