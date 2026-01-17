@@ -1,13 +1,13 @@
 :root {
-  --color-main: hsl(82, 17%, 44%);
-  --pad-1rm: 1rem;
-  --pad-2rm: 2rem;
-  --pad-3rm: 3rem;
-  --pad-4rm: 4rem;
-  --mar-1rm: 1rem;
-  --mar-2rm: 2rem;
-  --mar-3rm: 3rem;
-  --mar-4rm: 4rem;
+  --color-main: oklch(33.511% 0.08796 257.495);
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --font-size-sm: clamp(0.8rem, 0.8rem + 0.25vw, 0.95rem);
+  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --font-size-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --font-size-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
 }
 .selected {
   border: 1px solid black;
@@ -16,32 +16,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-sm);
   width: 30%;
   height: 100vh;
   .modifyPanel {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0.4rem;
+    margin: var(--space-sm);
     .modifyBtns {
-      border: 1px solid black;
+      border-radius: 10px;
       width: 100%;
     }
     .input {
       width: 100%;
+      border-radius: 10px;
+      background-color: rgb(80, 79, 102);
     }
   }
 
   .menuTree {
     width: 100%;
-    padding: 0.4rem;
+    padding: var(--space-sm);
     display: flex;
     flex-direction: column;
     align-items: center;
     .listCategory {
       font-weight: bold;
-      font-size: 1rem;
+      font-size: var(--font-size-base);
     }
     .listItem {
       text-align: center;
@@ -55,20 +57,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
+  gap: var(--space-sm);
   width: 100%;
   height: 100vh;
 }
-.settings {width: 100%;
+.settings {
+  width: 100%;
   height: 5vh;
-display: flex;
-text-align: center;
-flex-direction: row;
-padding: 0.4rem;
-.editModeToggleButton {
-border-radius: 10px;
-  background-color: var(--color-main);
-}
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  padding: var(--space-sm);
+  .editModeToggleButton {
+    border-radius: 10px;
+    background-color: var(--color-main);
+  }
 }
 .main {
   display: flex;
@@ -78,27 +81,46 @@ border-radius: 10px;
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 3vw;
+  gap: var(--space-md);
   width: 70%;
   text-align: center;
-  padding: 0.6rem;
-  margin: 0 1rem;
+  padding: var(--space-sm);
+  margin: 0 var(--space-sm);
   height: 90vh;
-  border-radius: 30px;
+  border-radius: 20px;
   overflow-y: auto;
   .menuItem {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
     align-items: center;
-    justify-items: center;
-    max-width: 100%;
-    max-height: 100px;
-  }
+    justify-content: space-around;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: var(--space-sm);
+    max-height: 150px;
 
-  .itemImg {
-    max-width: 100px;
+    .itemImgWrapper {
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      border: 1px solid black;
+    }
+    .itemImg {
+      max-width: 150px;
+      width: 100%;
+    }
+    .itemInfoWrapper {
+      width: 60%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      text-align: center;
+      font-size: var(--font-size-xl);
+      font-weight: 600;
+      flex-wrap: nowrap;
+      border: 1px solid black;
+    }
   }
 }
 
@@ -106,7 +128,7 @@ border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: clamp(0.2rem, 0.4rem, 0.6rem);
+  padding: var(--space-sm);
   width: 30%;
   border-radius: 0px 30px 30px 0px;
   text-align: center;
@@ -120,14 +142,14 @@ border-radius: 10px;
   }
 
   .shopName {
-    font-size: clamp(1rem, 5vw, 2.6rem);
+    font-size: var(--font-size-lg);
     font-weight: bold;
   }
 
   .categoryList {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: var(--space-sm);
     overflow-y: scroll;
     width: 100%;
   }
@@ -143,10 +165,10 @@ border-radius: 10px;
   align-items: center;
   width: 100%;
   border-radius: 20px;
-  padding: clamp(0.2rem, 0.6rem, 1.2rem);
+  padding: var(--space-sm);
   .categoryTitle {
-    font-size: clamp(1rem, 5vw, 2rem);
-    font-weight: normal;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
   }
 
   .categoryImg {

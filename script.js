@@ -134,19 +134,25 @@ function renderMenuItems() {
     const itemCard = document.createElement("div");
     itemCard.className = "menuItem";
     itemCard.dataset.id = item.id;
+    const itemImgDiv = document.createElement("div");
+    itemImgDiv.className = "itemImgWrapper"
     const itemImg = document.createElement("img");
     itemImg.className = "itemImg";
     itemImg.src = item.image;
     itemImg.alt = item.name;
+    const itemInfoDiv = document.createElement("div");
+    itemInfoDiv.className = "itemInfoWrapper";
     const itemTitle = document.createElement("p");
     itemTitle.className = "itemTitle";
     itemTitle.textContent = item.name;
     const itemPrice = document.createElement("span");
     itemPrice.className = "itemPrice";
     itemPrice.textContent = item.price;
-    itemCard.appendChild(itemImg);
-    itemCard.appendChild(itemTitle);
-    itemCard.appendChild(itemPrice);
+    itemImgDiv.appendChild(itemImg)
+    itemInfoDiv.appendChild(itemTitle);
+    itemInfoDiv.appendChild(itemPrice);
+    itemCard.appendChild(itemImgDiv);
+    itemCard.appendChild(itemInfoDiv);
     menuDiv.appendChild(itemCard);
   });
 }
@@ -174,13 +180,13 @@ function editMode() {
   const deleteCategoryDiv = document.createElement("div");
   deleteCategoryDiv.className = "modifyPanel";
   const removeButton = document.createElement("button");
-  removeButton.className = "removeCategoryBtn";
+  removeButton.className = "modifyBtns";
   removeButton.textContent = "Delete Category";
   //Items
   const newItemDiv = document.createElement("div");
   newItemDiv.className = "modifyPanel";
   const addItemButton = document.createElement("button");
-  addItemButton.className = "modfiyBtns";
+  addItemButton.className = "modifyBtns";
   addItemButton.textContent = "Add Item";
   const newItemName = document.createElement("input");
   newItemName.className = "input";
@@ -221,6 +227,7 @@ function removeCategory() {
   if (category == -1) return;
   categories.splice(category, 1);
   state.selectedCategoryId = null;
+  menuDiv.innerHTML = "";
   renderCategories(categories);
   renderList();
 }
