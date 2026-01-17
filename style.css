@@ -1,5 +1,5 @@
 :root {
-  --color-main: oklch(33.511% 0.08796 257.495);
+  --color-main: oklch(62.371% 0.10281 212.948 / 0.896);
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 2rem;
@@ -104,7 +104,6 @@
       width: 40%;
       display: flex;
       justify-content: center;
-      border: 1px solid black;
     }
     .itemImg {
       max-width: 150px;
@@ -114,12 +113,22 @@
       width: 60%;
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content:space-between;
+      align-content: center;
       text-align: center;
       font-size: var(--font-size-xl);
       font-weight: 600;
       flex-wrap: nowrap;
-      border: 1px solid black;
+      .itemTitle {
+        display: flex;
+        width: 50%;
+        justify-content: center;
+      }
+      .itemPrice {
+display: flex;
+width: 50%;
+justify-content: center;
+      }
     }
   }
 }
