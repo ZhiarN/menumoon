@@ -169,7 +169,7 @@ function editMode() {
   addCategoryButton.textContent = "Add Category";
   const newCategoryName = document.createElement("input");
   newCategoryName.className = "input";
-  newCategoryName.placeholder = "New Category Name";
+  newCategoryName.placeholder = "Name";
   newCategoryName.id = "newCategoryName";
   const newCategoryIMG = document.createElement("input");
   newCategoryIMG.className = "input";
@@ -191,12 +191,15 @@ function editMode() {
   const newItemName = document.createElement("input");
   newItemName.className = "input";
   newItemName.id = "newItemName";
+  newItemName.placeholder = "Item Name"
   const newItemPrice = document.createElement("input");
   newItemPrice.className = "input";
   newItemPrice.id = "newItemPrice";
+  newItemPrice.placeholder = "Item Price"
   const newItemIMG = document.createElement("input");
   newItemIMG.className = "input";
   newItemIMG.id = "newItemIMG";
+  newItemIMG.placeholder = "IMG Path"
   newItemDiv.appendChild(addItemButton);
   newItemDiv.appendChild(newItemName);
   newItemDiv.appendChild(newItemPrice);

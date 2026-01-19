@@ -2,7 +2,10 @@
   font-family: monospace;
 }
 :root {
-  --color-main: oklch(76.358% 0.00009 271.152);
+  --color-main: oklch(76.26% 0.01611 17.217);
+  --color-text-light: oklch(95.835% 0.0086 16.611);
+  --color-text-dark: oklch(16.376% 0.00002 271.152);
+  --color-accent: oklch(0% 0 0 / 0.5);
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 2rem;
@@ -30,11 +33,18 @@
     .modifyBtns {
       border-radius: 10px;
       width: 100%;
+      background-color: var(--color-main);
     }
     .input {
       width: 100%;
       border-radius: 10px;
-      background-color: rgb(80, 79, 102);
+      background-color: var(--color-accent);
+      color: var(--color-text-light);
+      
+    }
+      .input::placeholder {
+      color: var(--color-text-light);
+      
     }
   }
 
@@ -57,6 +67,7 @@
 .wrapper {
   user-select: none;
   background-color: var(--color-main);
+  background-image: url(media/coffeebackground.jpg);
   display: flex;
   flex-direction: column;
   align-items: center;
