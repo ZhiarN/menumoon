@@ -2,7 +2,7 @@
   font-family: monospace;
 }
 :root {
-  --color-main: oklch(62.371% 0.10281 212.948 / 0.896);
+  --color-main: oklch(76.358% 0.00009 271.152);
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 2rem;
@@ -192,8 +192,8 @@
 }
 
 .glass {
-  background: rgba(132, 128, 128, 0.15);
+  background: rgba(255, 255, 255, 0.16);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(22px) saturate(150%);
-  -webkit-backdrop-filter: blur(7.7px);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px);
 }
