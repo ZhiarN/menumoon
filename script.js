@@ -25,7 +25,18 @@ const categories = [
     id: "cat2",
     name: "Fast Food",
     image: "media/categoryIconDefault.svg",
-    items: [],
+    items: [{
+        id: "item1",
+        name: "Fries",
+        price: 20,
+        image: "media/categoryIconDefault.svg",
+      },
+    {
+        id: "item2",
+        name: "Hot Dog",
+        price: 20,
+        image: "media/categoryIconDefault.svg",
+      }],
   },
   {
     id: "cat3",
@@ -67,6 +78,8 @@ const categories = [
 const state = {
   currentUserID: null,
   selectedCategoryId: null,
+  selectedItemID: null,
+  editModeOn: null,
 };
 document
   .querySelector(".editModeToggleButton")
@@ -74,8 +87,19 @@ document
     const editPanel = document.querySelector(".editPanel");
     if (wrapper.contains(editPanel)) {
       wrapper.removeChild(editPanel);
+      document.querySelectorAll(".editModeSelected").forEach((elem) => {
+        elem.classList.remove("editModeSelected")
+        elem.classList.add("selected")
+      })
+      state.editModeOn = false;
+      
     } else {
       editMode();
+      document.querySelectorAll(".selected").forEach((elem) => {
+        elem.classList.remove("selected")
+        elem.classList.add("editModeSelected")
+      })
+      state.editModeOn = true;
     }
   });
 renderCategories(categories);
@@ -84,7 +108,9 @@ categoryListDiv.addEventListener("click", (event) => {
   if (!card) return;
   if (card.dataset.id === state.selectedCategoryId) {
     card.classList.remove("selected");
+    card.classList.remove("editModeSelected")
     state.selectedCategoryId = null;
+    state.selectedItemID = null;
     menuDiv.innerHTML = "";
     return;
   }
@@ -93,6 +119,14 @@ categoryListDiv.addEventListener("click", (event) => {
 });
 
 function selectCategory() {
+  if (state.editModeOn) {
+    document.querySelectorAll(".categoryCard").forEach((card) => {
+    card.classList.toggle(
+      "editModeSelected",
+      card.dataset.id === state.selectedCategoryId
+    );
+  });
+  }
   document.querySelectorAll(".categoryCard").forEach((card) => {
     card.classList.toggle(
       "selected",
@@ -126,28 +160,42 @@ function renderMenuItems() {
   const category = categories.find(
     (cat) => cat.id === state.selectedCategoryId
   );
+
   if (!category || category.items.length === 0) {
     menuDiv.textContent = "No items available";
     return;
   }
+
   category.items.forEach((item) => {
     const itemCard = document.createElement("div");
     itemCard.className = "menuItem";
     itemCard.dataset.id = item.id;
+
+if (item.id === state.selectedItemID) {
+      itemCard.classList.add(
+        state.editModeOn ? "editModeSelected" : "selected"
+      );
+    }
+    
     const itemImgDiv = document.createElement("div");
     itemImgDiv.className = "itemImgWrapper"
+
     const itemImg = document.createElement("img");
     itemImg.className = "itemImg";
     itemImg.src = item.image;
     itemImg.alt = item.name;
+
     const itemInfoDiv = document.createElement("div");
     itemInfoDiv.className = "itemInfoWrapper";
+
     const itemTitle = document.createElement("p");
     itemTitle.className = "itemTitle";
     itemTitle.textContent = item.name;
+
     const itemPrice = document.createElement("span");
     itemPrice.className = "itemPrice";
     itemPrice.textContent = item.price;
+
     itemImgDiv.appendChild(itemImg)
     itemInfoDiv.appendChild(itemTitle);
     itemInfoDiv.appendChild(itemPrice);
@@ -161,9 +209,9 @@ function editMode() {
   if (document.querySelector(".editPanel")) return;
   const editPanel = document.createElement("aside");
   editPanel.className = "editPanel glass";
-  //New Category
-  const newCategoryDiv = document.createElement("div");
-  newCategoryDiv.className = "modifyPanel";
+  //Category Edit
+  const categoryEditDiv = document.createElement("div");
+  categoryEditDiv.className = "modifyPanel";
   const addCategoryButton = document.createElement("button");
   addCategoryButton.className = "modifyBtns";
   addCategoryButton.textContent = "Add Category";
@@ -176,18 +224,23 @@ function editMode() {
   newCategoryIMG.placeholder = "IMG Path";
   newCategoryIMG.id = "newCategoryIMG";
   addCategoryButton.addEventListener("click", addCategory);
-  //Remove Category
-  const deleteCategoryDiv = document.createElement("div");
-  deleteCategoryDiv.className = "modifyPanel";
-  const removeButton = document.createElement("button");
-  removeButton.className = "modifyBtns";
-  removeButton.textContent = "Delete Category";
-  //Items
-  const newItemDiv = document.createElement("div");
-  newItemDiv.className = "modifyPanel";
+  const removeCategoryButton = document.createElement("button");
+  removeCategoryButton.className = "modifyBtns";
+  removeCategoryButton.textContent = "Remove Category";
+  categoryEditDiv.appendChild(newCategoryName);
+  categoryEditDiv.appendChild(newCategoryIMG);
+  categoryEditDiv.appendChild(addCategoryButton);
+  categoryEditDiv.appendChild(removeCategoryButton);
+
+  //Items Edit
+  const itemEditDiv = document.createElement("div");
+  itemEditDiv.className = "modifyPanel";
   const addItemButton = document.createElement("button");
   addItemButton.className = "modifyBtns";
   addItemButton.textContent = "Add Item";
+  const removeItemButton = document.createElement("button")
+removeItemButton.className = "modifyBtns";
+removeItemButton.textContent = "Remove Item";
   const newItemName = document.createElement("input");
   newItemName.className = "input";
   newItemName.id = "newItemName";
@@ -195,28 +248,42 @@ function editMode() {
   const newItemPrice = document.createElement("input");
   newItemPrice.className = "input";
   newItemPrice.id = "newItemPrice";
-  newItemPrice.placeholder = "Item Price"
+  newItemPrice.placeholder = "Item Price";
   const newItemIMG = document.createElement("input");
   newItemIMG.className = "input";
   newItemIMG.id = "newItemIMG";
-  newItemIMG.placeholder = "IMG Path"
-  newItemDiv.appendChild(addItemButton);
-  newItemDiv.appendChild(newItemName);
-  newItemDiv.appendChild(newItemPrice);
-  newItemDiv.appendChild(newItemIMG);
+  newItemIMG.placeholder = "IMG Path";
+  itemEditDiv.appendChild(newItemName);
+  itemEditDiv.appendChild(newItemPrice);
+  itemEditDiv.appendChild(newItemIMG);
+  itemEditDiv.appendChild(addItemButton);
+  itemEditDiv.appendChild(removeItemButton);
   addItemButton.addEventListener("click", addItem);
 
   //Add to DOM
-  deleteCategoryDiv.appendChild(removeButton);
-  newCategoryDiv.appendChild(addCategoryButton);
-  newCategoryDiv.appendChild(newCategoryName);
-  newCategoryDiv.appendChild(newCategoryIMG);
-  editPanel.appendChild(deleteCategoryDiv);
-  editPanel.appendChild(newCategoryDiv);
-  editPanel.appendChild(newItemDiv);
+  
+  editPanel.appendChild(categoryEditDiv);
+  editPanel.appendChild(itemEditDiv);
   wrapper.appendChild(editPanel);
-  removeButton.addEventListener("click", removeCategory);
+  removeCategoryButton.addEventListener("click", removeCategory);
+  removeItemButton.addEventListener("click", removeItem)
+menuDiv.addEventListener("click", (event) => {
+  const card = event.target.closest(".menuItem");
+  if (!card) return;
+  state.selectedItemID = card.dataset.id;
+  renderMenuItems();
+});
   renderList();
+}
+function removeItem() {
+  if (state.selectedItemID == null) return alert("No Item Selected");
+const category = categories.find((cat) => cat.id === state.selectedCategoryId);
+  const index = category.items.findIndex((item) => item.id === state.selectedItemID);
+  if (index === -1) return;
+  category.items.splice(index, 1)
+    state.selectedItemID = null;
+renderMenuItems();
+renderList();
 }
 function createCategoryID() {
   return `cat${categories.length + 1}`;
