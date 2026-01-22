@@ -81,6 +81,12 @@ const state = {
   selectedItemID: null,
   editModeOn: false,
 };
+menuDiv.addEventListener("click", (event) => {
+  const card = event.target.closest(".menuItem");
+  if (!card) return;
+  state.selectedItemID = card.dataset.id;
+  renderMenuItems();
+});
 document
   .querySelector(".editModeToggleButton")
   .addEventListener("click", function () {
@@ -261,13 +267,7 @@ removeItemButton.textContent = "Remove Item";
   editPanel.appendChild(itemEditDiv);
   wrapper.appendChild(editPanel);
   removeCategoryButton.addEventListener("click", removeCategory);
-  removeItemButton.addEventListener("click", removeItem)
-menuDiv.addEventListener("click", (event) => {
-  const card = event.target.closest(".menuItem");
-  if (!card) return;
-  state.selectedItemID = card.dataset.id;
-  renderMenuItems();
-});
+  removeItemButton.addEventListener("click", removeItem);
   renderList();
 }
 function removeItem() {
