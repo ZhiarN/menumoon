@@ -7,13 +7,13 @@ const categories = [
     name: "Main Dish",
     items: [
       {
-        id: "item1",
+        id: "cat1_item1",
         name: "Steak",
         price: 20,
         image: "media/categoryIconDefault.svg",
       },
       {
-        id: "item2",
+        id: "cat1_item2",
         name: "Erbazzone",
         price: 20,
         image: "media/categoryIconDefault.svg",
@@ -26,13 +26,13 @@ const categories = [
     name: "Fast Food",
     image: "media/categoryIconDefault.svg",
     items: [{
-        id: "item1",
+        id: "cat2_item1",
         name: "Fries",
         price: 20,
         image: "media/categoryIconDefault.svg",
       },
     {
-        id: "item2",
+        id: "cat2_item2",
         name: "Hot Dog",
         price: 20,
         image: "media/categoryIconDefault.svg",
@@ -79,7 +79,7 @@ const state = {
   currentUserID: null,
   selectedCategoryId: null,
   selectedItemID: null,
-  editModeOn: null,
+  editModeOn: false,
 };
 document
   .querySelector(".editModeToggleButton")
