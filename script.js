@@ -85,7 +85,7 @@ document
   .querySelector(".editModeToggleButton")
   .addEventListener("click", function () {
     const editPanel = document.querySelector(".editPanel");
-    if (wrapper.contains(editPanel)) {
+    if (state.editModeOn === true) {
       wrapper.removeChild(editPanel);
       document.querySelectorAll(".editModeSelected").forEach((elem) => {
         elem.classList.remove("editModeSelected")
@@ -119,19 +119,14 @@ categoryListDiv.addEventListener("click", (event) => {
 });
 
 function selectCategory() {
-  if (state.editModeOn) {
-    document.querySelectorAll(".categoryCard").forEach((card) => {
-    card.classList.toggle(
-      "editModeSelected",
-      card.dataset.id === state.selectedCategoryId
-    );
-  });
-  }
   document.querySelectorAll(".categoryCard").forEach((card) => {
-    card.classList.toggle(
-      "selected",
-      card.dataset.id === state.selectedCategoryId
+    if (state.selectedCategoryId === card.dataset.id) {
+    card.classList.add(
+      state.editModeOn ? "editModeSelected" : "selected"
     );
+    } else {
+      card.classList.remove(state.editModeOn ? "editModeSelected" : "selected")}
+
   });
   renderMenuItems(state.selectedCategoryId);
 }
