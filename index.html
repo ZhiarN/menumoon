@@ -13,50 +13,42 @@
 </head>
 
 <body data-app="menumoon" data-auth="guest" data-mode="view">
-  <header class="app-header">
-    <div class="app-header__controls">
-      <button aria-label="Toggle edit mode" aria-pressed="false" class="app-header__button" data-action="toggle-edit">Edit</button>
-    </div>
-
-
-    <div class="app-header__auth">
-      <span class="app-header__username">Guest</span> <button aria-label="Login" class="app-header__button" data-action="login">Login/Signup</button>
-    </div>
-  </header>
-
-
-  <main class="app-main">
-    <nav class="category-nav glass" data-component="category-list">
-      <ul class="category-list">
-        <li class="category-list__item"><button class="category-list__button" data-action="select-category" data-category-id="cat1"><img alt="Category image placeholder" class="category-list__image"
-        src="media/categoryIconDefault.svg"> <span class="category-list__name">Main Dish</span></button>
-        </li>
-      </ul>
-    </nav>
-
-
-    <section class="menu glass" data-component="menu-items">
-      <h2>Menu Items</h2>
-      <article class="item-card" data-category-id="cat1" data-item-id="cat1-item-1">
-        <img alt="Item image placeholder" class="item-card__image" src="media/categoryIconDefault.svg">
-
-        <div class="item-card__info">
-          <h3 class="item-card__name">Kebab</h3>
-          <data class="item-card__price" value="290000">290,000 IRT</data>
-        </div>
-      </article>
-
-
-      <article class="item-card" data-category-id="cat1" data-item-id="cat1-item-2">
-        <img alt="Item image placeholder" class="item-card__image" src="media/categoryIconDefault.svg">
-
-        <div class="item-card__info">
-          <h3 class="item-card__name">Kebab</h3>
-          <data class="item-card__price" value="290000">290,000 IRT</span>
-        </div>
-      </article>
-    </section>
-  </main>
+  <div class="app-root">
+    <header class="app-header">
+      <div class="app-header__controls">
+        <button aria-label="Toggle edit mode" aria-pressed="false" class="app-header__button" data-action="toggle-edit">Edit</button>
+      </div>
+      <div class="app-header__auth">
+        <span class="app-header__username">Guest</span> <button aria-label="Login" class="app-header__button" data-action="login">Login/Signup</button>
+      </div>
+    </header>
+    <main class="app-main">
+      <nav class="category-nav glass" data-component="category-list">
+        <ul class="category-list">
+          <li class="category-list__item"><button class="category-list__button" data-action="select-category" data-category-id="cat1"><img alt="Category image placeholder" class="category-list__image"
+          src="media/categoryIconDefault.svg"> <span class="category-list__name">Main Dish</span></button>
+          </li>
+        </ul>
+      </nav>
+      <section class="menu glass" data-component="menu-items">
+        <h2>Menu Items</h2>
+        <article class="item-card" data-category-id="cat1" data-item-id="cat1-item-1">
+          <img alt="Item image placeholder" class="item-card__image" src="media/categoryIconDefault.svg">
+          <div class="item-card__info">
+            <h3 class="item-card__name">Kebab</h3>
+            <data class="item-card__price" value="290000">290,000 IRT</data>
+          </div>
+        </article>
+        <article class="item-card" data-category-id="cat1" data-item-id="cat1-item-2">
+          <img alt="Item image placeholder" class="item-card__image" src="media/categoryIconDefault.svg">
+          <div class="item-card__info">
+            <h3 class="item-card__name">Kebab</h3>
+            <data class="item-card__price" value="290000">290,000 IRT</span>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
   <!-- <script src="script.js" defer></script> -->
 </body>
 </html>
