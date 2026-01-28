@@ -1,6 +1,3 @@
-* {
-  font-family: monospace;
-}
 :root {
   --color-main: oklch(76.26% 0.01611 17.217);
   --color-accent: oklch(22.645% 0.00003 271.152);
@@ -68,15 +65,15 @@
 } */
 
 body {
-  user-select: none;
+  font-family: monospace;
   background-color: var(--color-main);
   background-image: url(media/coffeebackground.jpg);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-sm);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100svh;
 }
 .app-header {
   width: 100vw;
@@ -94,9 +91,9 @@ body {
   padding: var(--space-sm);
   background-color: var(--color-accent);
   color: var(--color-text-light);
-  &:hover {
-    transform: scale(1.1);
-  }
+}
+.app-header__button:hover {
+  transform: scale(1.1);
 }
 .app-main {
   display: flex;
@@ -117,13 +114,13 @@ ul {
   border-radius: 0px 10px 10px 0px;
   text-align: center;
   height: 90vh;
-  .category-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    overflow-y: scroll;
-    width: 100%;
-  }
+}
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  overflow-y: scroll;
+  width: 100%;
 }
 .category-list__button {
   display: flex;
@@ -133,13 +130,13 @@ ul {
   border-radius: 10px;
   padding: var(--space-sm);
   border: 0;
-  .category-list__image {
-    width: clamp(40px, 100%, 150px);
-  }
-  .category-list__name {
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-  }
+}
+.category-list__image {
+  width: clamp(40px, 100%, 150px);
+}
+.category-list__name {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
 }
 button {
   background-color: rgba(0, 0, 0, 0);
@@ -155,43 +152,39 @@ button {
   height: 90vh;
   border-radius: 10px;
   overflow-y: auto;
-  .item-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    border-radius: 10px;
-    padding: var(--space-sm);
-    max-height: 300px;
-    .item-card__image {
-      display: flex;
-      width: 30%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      max-width: 290px;
-      max-height: 290px;
-      border-radius: 10px;
-    }
-  }
-
-  .item-card__info {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-evenly;
-    text-align: center;
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-    text-wrap: wrap;
-    .item-card__price {
-      text-decoration: underline;
-    }
-  }
+}
+.item-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  padding: var(--space-sm);
+  max-height: 300px;
+}
+.item-card__image {
+  display: flex;
+  width: 30%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  max-width: 290px;
+  max-height: 290px;
+  border-radius: 10px;
 }
 
-::-webkit-scrollbar {
-  display: none;
+.item-card__info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-evenly;
+  text-align: center;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  text-wrap: wrap;
+}
+.item-card__price {
+  text-decoration: underline;
 }
 
 .glass {
@@ -201,43 +194,34 @@ button {
   -webkit-backdrop-filter: blur(15px);
 }
 
-
 @media screen and (max-width: 930px) {
-  .menu {
-    .item-card {
-      gap: var(--space-md);
-      .item-card__info {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        gap: var(--space-md);
-        font-size: var(--font-size-lg);
-        flex-wrap: wrap;
-      }
-    }
+  .item-card {
+    gap: var(--space-md);
   }
-  .category-list__button {
-    .category-list__name {
-      font-size: var(--font-size-lg);
-      font-weight: 600;
-    }
+  .item-card__info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: var(--space-md);
+    font-size: var(--font-size-lg);
+    flex-wrap: wrap;
+  }
+  .category-list__name {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
   }
 }
 
 @media screen and (max-width: 300px) {
-  .menu {
-    .item-card {
-      gap: var(--space-sm);
-      .item-card__info {
-        gap: var(--space-sm);
-        font-size: var(--font-size-sm);
-      }
-    }
+  .item-card {
+    gap: var(--space-sm);
   }
-  .category-list__button {
-    .category-list__name {
-      font-size: var(--font-size-sm);
-      font-weight: 600;
-    }
+  .item-card__info {
+    gap: var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+  .category-list__name {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
   }
 }
