@@ -1,12 +1,8 @@
 @media screen and (max-width: 930px) {
   .menu {
-    .menuItem {
+    .item-card {
       gap: var(--space-md);
-      .itemImgWrapper {
-        display: flex;
-        width: 100%;
-      }
-      .itemInfoWrapper {
+      .item-card__info {
         display: flex;
         width: 100%;
         flex-direction: column;
@@ -16,8 +12,8 @@
       }
     }
   }
-  .categoryCard {
-    .categoryTitle {
+  .category-list__button {
+    .category-list__name {
       font-size: var(--font-size-lg);
       font-weight: 600;
     }
@@ -26,16 +22,16 @@
 
 @media screen and (max-width: 300px) {
   .menu {
-    .menuItem {
+    .item-card {
       gap: var(--space-sm);
-      .itemInfoWrapper {
+      .item-card__info {
         gap: var(--space-sm);
         font-size: var(--font-size-sm);
       }
     }
   }
-  .categoryCard {
-    .categoryTitle {
+  .category-list__button {
+    .category-list__name {
       font-size: var(--font-size-sm);
       font-weight: 600;
     }

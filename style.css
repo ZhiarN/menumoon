@@ -3,9 +3,9 @@
 }
 :root {
   --color-main: oklch(76.26% 0.01611 17.217);
-  --color-text-light: oklch(95.835% 0.0086 16.611);
+  --color-accent: oklch(22.645% 0.00003 271.152);
+  --color-text-light: oklch(100% 0.00011 271.152);
   --color-text-dark: oklch(16.376% 0.00002 271.152);
-  --color-accent: oklch(0% 0 0 / 0.5);
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 2rem;
@@ -21,7 +21,7 @@
 .editModeSelected {
   box-shadow: inset 0 0 30px rgb(255, 0, 0);
 }
-.editPanel {
+/* .editPanel {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,9 +65,9 @@
       text-align: center;
     }
   }
-}
+} */
 
-.wrapper {
+body {
   user-select: none;
   background-color: var(--color-main);
   background-image: url(media/coffeebackground.jpg);
@@ -75,25 +75,74 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-sm);
-  width: 100%;
+  width: 100vw;
   height: 100vh;
 }
-.settings {
-  width: 100%;
+.app-header {
+  width: 100vw;
   height: 5vh;
   display: flex;
   text-align: center;
-  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-main);
+  border-bottom: 1px solid black;
   padding: var(--space-sm);
-  .editModeToggleButton {
-    border-radius: 10px;
-    background-color: var(--color-main);
+}
+.app-header__button {
+  border-radius: 10px;
+  padding: var(--space-sm);
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  &:hover {
+    transform: scale(1.1);
   }
 }
-.main {
+.app-main {
   display: flex;
   width: 100%;
   height: 90vh;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.category-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-sm);
+  width: 30%;
+  border-radius: 0px 10px 10px 0px;
+  text-align: center;
+  height: 90vh;
+  .category-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    overflow-y: scroll;
+    width: 100%;
+  }
+}
+.category-list__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  padding: var(--space-sm);
+  border: 0;
+  .category-list__image {
+    width: clamp(40px, 100%, 150px);
+  }
+  .category-list__name {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+  }
+}
+button {
+  background-color: rgba(0, 0, 0, 0);
 }
 .menu {
   display: flex;
@@ -106,7 +155,7 @@
   height: 90vh;
   border-radius: 10px;
   overflow-y: auto;
-  .menuItem {
+  .item-card {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -114,90 +163,35 @@
     border-radius: 10px;
     padding: var(--space-sm);
     max-height: 300px;
-
-    .itemImgWrapper {
+    .item-card__image {
       display: flex;
       width: 30%;
-      border-radius: 10px;
-      max-height: 290px;
-          .itemImg {
-      display: flex;
-      width: 100%;
       aspect-ratio: 1;
       object-fit: cover;
       max-width: 290px;
       max-height: 290px;
       border-radius: 10px;
     }
-    }
-
-    .itemInfoWrapper {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      align-content: center;
-      justify-content: space-evenly;
-      text-align: center;
-      font-size: var(--font-size-xl);
-      font-weight: 600;
-      text-wrap: wrap;
-      .itemPrice {
-        text-decoration: underline;
-      }
-    }
-  }
-}
-
-.menuSidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: var(--space-sm);
-  width: 30%;
-  border-radius: 0px 10px 10px 0px;
-  text-align: center;
-  height: 90vh;
-  .shopLogo {
-    width: clamp(10px, 100%, 100px);
   }
 
-  .shopLogoImg {
+  .item-card__info {
     width: 100%;
-  }
-
-  .shopName {
-    font-size: var(--font-size-lg);
-    font-weight: bold;
-  }
-
-  .categoryList {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    overflow-y: scroll;
-    width: 100%;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-evenly;
+    text-align: center;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    text-wrap: wrap;
+    .item-card__price {
+      text-decoration: underline;
+    }
   }
 }
 
 ::-webkit-scrollbar {
   display: none;
-}
-
-.categoryCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  border-radius: 10px;
-  padding: var(--space-sm);
-  .categoryTitle {
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-  }
-
-  .categoryImg {
-    width: clamp(40px, 100%, 150px);
-  }
 }
 
 .glass {
