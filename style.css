@@ -3,6 +3,8 @@
   --color-accent: oklch(22.645% 0.00003 271.152);
   --color-text-light: oklch(100% 0.00011 271.152);
   --color-text-dark: oklch(16.376% 0.00002 271.152);
+  --state-selected-shadow: box-shadow: inset 0 0 10px black;
+  --state-edited-shadow: box-shadow: inset 0 0 10px red;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 2rem;
@@ -13,65 +15,20 @@
   --font-size-xl: clamp(1.3rem, 1.2rem + 1vw, 2rem);
 }
 .category-list__button.is-selected {
-  box-shadow: inset 0 0 10px black;
+  box-shadow: var(--state-selected-shadow);
 }
 
 .category-list__button.is-selected.is-editing {
-  box-shadow: inset 0 0 30px red;
+  box-shadow: var(--state-edited-shadow);
 }
 
 .item-card.is-selected {
-  box-shadow: inset 0 0 10px black;
+  box-shadow: var(--state-selected-shadow);
 }
 
 .item-card.is-selected.is-editing {
-  box-shadow: inset 0 0 30px red;
+  box-shadow: var(--state-edited-shadow);
 }
-/* .editPanel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  width: 30%;
-  height: 100vh;
-  .modifyPanel {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: var(--space-sm);
-    margin-top: var(--space-lg);
-    width: 100%;
-    .modifyBtns {
-      border-radius: 10px;
-      width: 100%;
-      background-color: var(--color-main);
-    }
-    .input {
-      width: 100%;
-      border-radius: 10px;
-      background-color: var(--color-accent);
-      color: var(--color-text-light);
-    }
-    .input::placeholder {
-      color: var(--color-text-light);
-    }
-  }
-
-  .menuTree {
-    width: 100%;
-    padding: var(--space-sm);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .listCategory {
-      font-weight: bold;
-      font-size: var(--font-size-base);
-    }
-    .listItem {
-      text-align: center;
-    }
-  }
-} */
 
 body {
   font-family: monospace;
