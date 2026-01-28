@@ -10,7 +10,8 @@
   <title>Menumoon</title>
 </head>
 
-<body data-app="menumoon">
+<body data-app="menumoon"
+data-mode="view" data-auth="guest">
   <header class="app-header">
     <div class="app-header__controls">
       <button class="app-header__button" data-action="toggle-edit" aria-pressed="false"
@@ -26,8 +27,7 @@
     <nav class="category-nav glass" data-component="category-list">
       <ul class="category-list">
         <li class="category-list__item">
-          <button class="category-list__button" data-action="select-category" data-category-id="cat1"
-            aria-current="false">
+          <button class="category-list__button" data-action="select-category" data-category-id="cat1">
             <img class="category-list__image" src="media/categoryIconDefault.svg" alt="Category image placeholder" />
             <span class="category-list__name">Main Dish</span>
           </button>
@@ -38,7 +38,7 @@
       <article class="item-card" data-item-id="cat1-item-1" data-category-id="cat1">
         <img src="media/categoryIconDefault.svg" alt="Item image placeholder" class="item-card__image">
         <div class="item-card__info">
-          <strong class="item-card__name">Kebab</strong>
+          <h3 class="item-card__name">Kebab</h3>
           <span class="item-card__price">290.000</span>
         </div>
 
@@ -46,7 +46,7 @@
       <article class="item-card" data-item-id="cat1-item-2" data-category-id="cat1">
         <img src="media/categoryIconDefault.svg" alt="Item image placeholder" class="item-card__image">
         <div class="item-card__info">
-          <strong class="item-card__name">Kebab</strong>
+          <h3 class="item-card__name">Kebab</h3>
           <span class="item-card__price">290.000</span>
         </div>
       </article>
