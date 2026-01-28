@@ -8,10 +8,8 @@
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <link href="reset.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
-  <link href="mobile.css" rel="stylesheet">
-
   <title>Menumoon</title>
-  <meta content="Menumoon is a digital menu for your bussiness that offers an elegant user experience" name="description">
+  <meta content="Menumoon is a digital menu for your business that offers an elegant user experience" name="description">
 </head>
 
 <body data-app="menumoon" data-auth="guest" data-mode="view">
@@ -22,7 +20,7 @@
 
 
     <div class="app-header__auth">
-      <span class="app-header__username">Admin</span> <button aria-label="Login" class="app-header__button" data-action="login">Login/Signup</button>
+      <span class="app-header__username">Guest</span> <button aria-label="Login" class="app-header__button" data-action="login">Login/Signup</button>
     </div>
   </header>
 
@@ -38,12 +36,13 @@
 
 
     <section class="menu glass" data-component="menu-items">
+      <h2>Menu Items</h2>
       <article class="item-card" data-category-id="cat1" data-item-id="cat1-item-1">
         <img alt="Item image placeholder" class="item-card__image" src="media/categoryIconDefault.svg">
 
         <div class="item-card__info">
           <h3 class="item-card__name">Kebab</h3>
-          <span class="item-card__price">290.000</span>
+          <data class="item-card__price" value="290000">290,000 IRT</data>
         </div>
       </article>
 
@@ -53,7 +52,7 @@
 
         <div class="item-card__info">
           <h3 class="item-card__name">Kebab</h3>
-          <span class="item-card__price">290.000</span>
+          <data class="item-card__price" value="290000">290,000 IRT</span>
         </div>
       </article>
     </section>
