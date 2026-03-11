@@ -3,4 +3,5 @@ draft
 eslint.config.mjs
 /node_modules
 pnpm-lock.yaml
+menumoon.code-workspace
 
