@@ -9,39 +9,31 @@
   --space-md: 1rem;
   --space-lg: 2rem;
   --space-xl: 4rem;
+  --default-radius: 10px;
   --font-size-sm: clamp(0.8rem, 0.8rem + 0.25vw, 0.95rem);
   --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
   --font-size-lg: clamp(1.2rem, 1.1rem + 0.75vw, 1.5rem);
   --font-size-xl: clamp(1.3rem, 1.2rem + 1vw, 2rem);
 }
-.category-list__button.is-selected {
+.is-selected {
   box-shadow: var(--state-selected-shadow);
 }
 
-.category-list__button.is-selected.is-editing {
-  box-shadow: var(--state-edited-shadow);
-}
-
-.item-card.is-selected {
-  box-shadow: var(--state-selected-shadow);
-}
-
-.item-card.is-selected.is-editing {
+.is-selected.is-editing {
   box-shadow: var(--state-edited-shadow);
 }
 
  body{
   font-family: monospace;
   background-color: var(--color-main);
-  background-image: url(media/coffeebackground.jpg);
-  width: 100%;
-  min-height: 100svh;
 }
 .app-root {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-sm);
+  min-height: 100svh;
+
 }
 .app-header {
   width: 100%;
@@ -50,23 +42,25 @@
   text-align: center;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--color-main);
-  border-bottom: 1px solid black;
   padding: var(--space-sm);
 }
 .app-header__button {
-  border-radius: 10px;
+  border-radius: var(--default-radius);
   padding: var(--space-sm);
   background-color: var(--color-accent);
   color: var(--color-text-light);
 }
+
 .app-header__button:hover {
   transform: scale(1.1);
 }
+.app-main, .category-nav,.menu {
+  height: 90svh;
+}
 .app-main {
-  display: flex;
-  width: 100%;
-  height: 90vh;
+  display: grid;
+  grid-template-columns: 5fr 10fr;
+
 }
 ul {
   list-style-type: none;
@@ -78,30 +72,27 @@ ul {
   flex-direction: column;
   align-items: center;
   padding: var(--space-sm);
-  flex: 0 0 30%;
   border-radius: 0px 10px 10px 0px;
   text-align: center;
-  height: 90vh;
 }
 .category-list {
-  display: flex;
-  flex-direction: column;
   gap: var(--space-sm);
-  overflow-y: scroll;
-  width: 100%;
+  overflow-y: auto;
 }
 .category-list__button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  border-radius: 10px;
+border-radius: var(--default-radius);
   padding: var(--space-sm);
   background-color: rgba(0, 0, 0, 0);
   border: 0;
 }
 .category-list__image {
-  width: clamp(40px, 100%, 150px);
+  display: block;
+  width: auto;
+  max-width: 150px;
+  height: auto;
 }
 .category-list__name {
   font-size: var(--font-size-xl);
@@ -109,45 +100,42 @@ ul {
 }
 
 .menu {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  flex: 1;
+  display: grid;
+grid-template-columns: repeat(1fr, minmax(100px, 1fr));
+gap: var(--space-sm);
   text-align: center;
   padding: var(--space-sm);
   margin: 0 var(--space-sm);
-  height: 90vh;
-  border-radius: 10px;
+  border-radius: var(--default-radius);
   overflow-y: auto;
 }
 .item-card {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  border-radius: 10px;
-  padding: var(--space-sm);
-  max-height: 300px;
+  flex-direction: column;
+border-radius: var(--default-radius);
+  border: 1px solid #84ff00;
+  gap: var(--space-sm);
+  height: 30svh;
+  overflow: hidden;
 }
 .item-card__image {
-  display: flex;
-  width: 30%;
   aspect-ratio: 1;
+  height: 60%;
+  width: 100%;
   object-fit: cover;
-  max-width: 290px;
-  max-height: 290px;
-  border-radius: 10px;
+  border: solid #ff0000;
+border-radius: var(--default-radius);
 }
 
 .item-card__info {
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-evenly;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+  justify-content: space-between;
   text-align: center;
   font-size: var(--font-size-xl);
-  font-weight: 600;
+  font-weight: bold;
   flex-wrap: wrap;
 }
 .item-card__price {
@@ -160,10 +148,14 @@ ul {
   backdrop-filter: blur(10px) saturate(150%);
   -webkit-backdrop-filter: blur(15px);
 }
+.hidden-visually {
+  display: none;
+  visibility: hidden;
+}
 
-@media screen and (max-width: 930px) {
+/* @media screen and (max-width: 930px) {
   .item-card {
-    gap: var(--space-md);
+    
   }
   .item-card__info {
     display: flex;
@@ -191,4 +183,4 @@ ul {
     font-size: var(--font-size-sm);
     font-weight: 600;
   }
-}
+} */
