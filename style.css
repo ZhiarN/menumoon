@@ -23,7 +23,7 @@
   box-shadow: var(--state-edited-shadow);
 }
 
- body{
+body {
   font-family: monospace;
   background-color: var(--color-main);
 }
@@ -32,8 +32,8 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-sm);
+  min-width: 100svw;
   min-height: 100svh;
-
 }
 .app-header {
   width: 100%;
@@ -54,15 +54,18 @@
 .app-header__button:hover {
   transform: scale(1.1);
 }
-.app-main, .category-nav,.menu {
+.app-main,
+.category-nav,
+.menu {
   height: 90svh;
 }
 .app-main {
   display: grid;
   grid-template-columns: 5fr 10fr;
-
+  width: 100%;
 }
-ul {
+ul,
+li {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -71,19 +74,22 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-sm);
   border-radius: 0px 10px 10px 0px;
   text-align: center;
 }
 .category-list {
+  padding: var(--space-sm);
+  flex-direction: column;
   gap: var(--space-sm);
   overflow-y: auto;
+  width: 100%;
 }
 .category-list__button {
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
-border-radius: var(--default-radius);
+  border-radius: var(--default-radius);
   padding: var(--space-sm);
   background-color: rgba(0, 0, 0, 0);
   border: 0;
@@ -101,8 +107,8 @@ border-radius: var(--default-radius);
 
 .menu {
   display: grid;
-grid-template-columns: repeat(1fr, minmax(100px, 1fr));
-gap: var(--space-sm);
+  grid-template-columns: repeat(1fr, minmax(100px, 1fr));
+  gap: var(--space-sm);
   text-align: center;
   padding: var(--space-sm);
   margin: 0 var(--space-sm);
@@ -112,7 +118,7 @@ gap: var(--space-sm);
 .item-card {
   display: flex;
   flex-direction: column;
-border-radius: var(--default-radius);
+  border-radius: var(--default-radius);
   border: 1px solid #84ff00;
   gap: var(--space-sm);
   height: 30svh;
@@ -124,7 +130,7 @@ border-radius: var(--default-radius);
   width: 100%;
   object-fit: cover;
   border: solid #ff0000;
-border-radius: var(--default-radius);
+  border-radius: var(--default-radius);
 }
 
 .item-card__info {
