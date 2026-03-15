@@ -1,44 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
-  <meta content="yes" name="mobile-web-app-capable">
-  <meta content="black" name="apple-mobile-web-app-status-bar-style">
-  <link href="reset.css" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-  <title>Menumoon</title>
-  <meta content="Menumoon is a digital menu for your business that offers an elegant user experience" name="description">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+      name="viewport"
+    />
+    <meta content="yes" name="mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <link href="reset.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Menumoon</title>
+    <meta
+      content="Menumoon is a digital menu for your business that offers an elegant user experience"
+      name="description"
+    />
+  </head>
 
-<body data-app="menumoon" data-auth="guest" data-mode="view">
-  <div class="app-root" data-component="root">
-    <header class="app-header glass">
-      <div class="app-header__controls">
-        <button aria-label="Toggle edit mode" aria-pressed="false" class="app-header__button" data-action="toggle-edit">Edit</button>
-      </div>
-      <div class="app-header__auth">
-        <span class="app-header__username">Guest</span> <button aria-label="Login" class="app-header__button" data-action="login">Login/Signup</button>
-      </div>
-    </header>
-    <main class="app-main">
-      <nav class="category-nav glass" >
-        <ul class="category-list" data-component="category-list">
-        </ul>
-      </nav>
-      <section class="menu glass" data-component="menu-items">
-        <h2 class="hidden-visually">Menu Items</h2>
-        <article class="item-card" data-category-id="cat1" data-item-id="cat1-item-1">
-          <img alt="Item image placeholder" class="item-card__image" src="media/categoryIconDefault.svg">
-          <div class="item-card__info">
-            <h3 class="item-card__name">Kebab</h3>
-            <data class="item-card__price" value="290000">290,000 IRT</data>
-          </div>
-        </article>
-      </section>
-    </main>
-  </div>
-  <script src="script.js" defer></script>
-</body>
+  <body data-app="menumoon" data-auth="guest" data-mode="view">
+    <div class="app-root" data-component="root">
+      <header class="app-header glass">
+        <div class="app-header__controls">
+          <button
+            aria-label="Toggle edit mode"
+            aria-pressed="false"
+            class="app-header__button"
+            data-action="toggle-edit"
+          >
+            Edit
+          </button>
+        </div>
+        <div class="app-header__auth">
+          <span class="app-header__username">Guest</span>
+          <button
+            aria-label="Login"
+            class="app-header__button"
+            data-action="login"
+          >
+            Login/Signup
+          </button>
+        </div>
+      </header>
+      <main class="app-main">
+        <nav class="category-nav glass">
+          <ul class="category-list" data-component="category-list"></ul>
+        </nav>
+        <section class="menu glass" data-component="menu-items">
+          <h2 class="hidden-visually">Menu Items</h2>
+        </section>
+        r
+      </main>
+    </div>
+    <script src="script.js" defer></script>
+  </body>
 </html>
