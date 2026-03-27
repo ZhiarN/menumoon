@@ -21,26 +21,7 @@
   <body data-app="menumoon" data-auth="guest" data-mode="view">
     <div class="app-root" data-component="root">
       <header class="app-header glass">
-        <div class="app-header__controls">
-          <button
-            aria-label="Toggle edit mode"
-            aria-pressed="false"
-            class="app-header__button"
-            data-action="toggle-edit"
-          >
-            Edit
-          </button>
-        </div>
-        <div class="app-header__auth">
-          <span class="app-header__username">Guest</span>
-          <button
-            aria-label="Login"
-            class="app-header__button"
-            data-action="login"
-          >
-            Login/Signup
-          </button>
-        </div>
+        Menumoon
       </header>
       <main class="app-main">
         <nav class="category-nav glass">
@@ -50,6 +31,16 @@
           <h2 class="hidden-visually">Menu Items</h2>
         </section>
       </main>
+      <aside class="control-panel" data-component="control-panel">
+  <div class="control-panel__header" data-action="editmode-toggle">
+    <h3 class="control-panel__eyebrow">Control Panel</h3>
+  </div>
+        <section class="edit-form" data-role="edit-addCategory">
+        </section>
+        <section class="edit-form" data-role="edit-addItem"></section>
+        <section class="edit-form" data-role="edit-removeCategory"></section>
+        <section class="edit-form" data-role="edit-removeItem"></section>
+      </aside>
     </div>
     <script src="script.js" defer></script>
   </body>
