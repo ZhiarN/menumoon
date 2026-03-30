@@ -155,4 +155,14 @@ function renderUI() {
 renderCategories();
 renderMenu();
 };
+
+function removeItem() {
+  if (state.selectedItemID == null) return alert("No Item Selected");
+const category = state.categories.find((cat) => cat.id === state.selectedCategoryID);
+  const index = category.items.findIndex((item) => item.id === state.selectedItemID);
+  if (index === -1) return;
+  category.items.splice(index, 1)
+    state.selectedItemID = null;
+renderMenu();
+};
 startApp();
