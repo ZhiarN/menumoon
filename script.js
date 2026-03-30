@@ -177,4 +177,15 @@ function removeCategory() {
   menuElement.innerHTML = "";
   renderCategories(state.categories);
 };
+
+function addCategory(newName, newImage) {
+  const newCategory = {
+    id: `cat${state.categories.length + 1}`,
+    name: newName,
+    image: newImage,
+    items: [],
+  };
+  state.categories.push(newCategory);
+  renderCategories(state.categories);
+};
 startApp();
