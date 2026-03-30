@@ -106,16 +106,14 @@ state.selectedItemID = null;
       state.selectedItemID = item.dataset.itemId;
   }
 })
-}
-addListeners();
+};
 
-function renderUI() {
-  const categoryNavElement = document.querySelector(".category-nav");
+function renderCategories() {
+    const categoryNavElement = document.querySelector(".category-nav");
   if ( !Array.isArray(state.categories)|| state.categories.length === 0) {
   categoryNavElement.textContent = "NO CATEGORIES TO SHOW";
  return;
 };
-  function renderCategories() {
     const categoryListElement = document.querySelector(`[data-component="category-list"]`);
     categoryListElement.innerHTML = state.categories.map((cat) => `
 
@@ -129,9 +127,9 @@ function renderUI() {
         <span class="category-list__name">${cat.name}</span>
         </button>
       </li>`).join('');
-}; renderCategories();
+}; 
 
-function rendermenu() {
+function renderMenu() {
   const menuElement = document.querySelector(`[data-component="menu-items"]`);
   if (state.selectedCategoryID == null) return menuElement.textContent = "NO ITEM TO SHOW";
   const category = state.categories.find((cat) => cat.id === state.selectedCategoryID);
@@ -149,6 +147,12 @@ if (!category || !category.items || category.items.length === 0) {
   </article>`).join('');
 
 };
-rendermenu();
+function startApp() {
+  addListeners();
+  renderUI();
 }
-renderUI();
+function renderUI() {
+renderCategories();
+renderMenu();
+};
+startApp();
