@@ -164,7 +164,7 @@ const category = state.categories.find((cat) => cat.id === state.selectedCategor
   if (index === -1) return;
   category.items.splice(index, 1)
     state.selectedItemID = null;
-renderMenu();
+renderUI();
 };
 function removeCategory() {
   if (state.selectedCategoryID == null) return alert("No Category Selected");
@@ -175,7 +175,7 @@ function removeCategory() {
   state.categories.splice(category, 1);
   state.selectedCategoryID = null;
   menuElement.innerHTML = "";
-  renderCategories(state.categories);
+  renderUI();
 };
 
 function addCategory(newName, newImage) {
@@ -186,6 +186,26 @@ function addCategory(newName, newImage) {
     items: [],
   };
   state.categories.push(newCategory);
-  renderCategories(state.categories);
+  renderUI();
+};
+
+function addItem(newItemName, newItemPrice, newItemImage) {
+  if (state.selectedCategoryID == null) {
+    alert("No Category Selected");
+    return;
+  }
+  const category = state.categories.find(
+    (cat) => cat.id === state.selectedCategoryID
+  );
+
+  const newItem = {
+    id: `${category.id}_item${category.items.length + 1}`,
+    name: newItemName,
+    price: newItemPrice,
+    image: newItemImage,
+  };
+
+  category.items.push(newItem);
+  renderUI();
 };
 startApp();
