@@ -1,5 +1,7 @@
 const appRoot = document.querySelector(`[data-component="root"]`);
 const editButton = document.querySelector(`[data-action="toggle-edit"]`);
+  const menuElement = document.querySelector(`[data-component="menu-items"]`);
+
 const state = {
  categories: [
   {
@@ -130,7 +132,6 @@ function renderCategories() {
 }; 
 
 function renderMenu() {
-  const menuElement = document.querySelector(`[data-component="menu-items"]`);
   if (state.selectedCategoryID == null) return menuElement.textContent = "NO ITEM TO SHOW";
   const category = state.categories.find((cat) => cat.id === state.selectedCategoryID);
 if (!category || !category.items || category.items.length === 0) {
@@ -164,5 +165,16 @@ const category = state.categories.find((cat) => cat.id === state.selectedCategor
   category.items.splice(index, 1)
     state.selectedItemID = null;
 renderMenu();
+};
+function removeCategory() {
+  if (state.selectedCategoryID == null) return alert("No Category Selected");
+  const category = state.categories.findIndex(
+    (cat) => cat.id === state.selectedCategoryID
+  );
+  if (category == -1) return;
+  state.categories.splice(category, 1);
+  state.selectedCategoryID = null;
+  menuElement.innerHTML = "";
+  renderCategories(state.categories);
 };
 startApp();
