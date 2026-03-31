@@ -13,7 +13,7 @@
   --default-radius: 10px;
   --font-size-sm: clamp(0.8rem, 0.8rem + 0.25vw, 0.95rem);
   --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-  --font-size-lg: clamp(1.2rem, 1.1rem + 0.75vw, 1.5rem);
+  --font-size-lg: clamp(1.1rem, 1rem + 0.6vw, 1.5rem);
   --font-size-xl: clamp(1.3rem, 1.2rem + 1vw, 2rem);
   --font-size-xxl: clamp(1.8rem, 1.5rem + 2vw, 2.5rem);
 }
@@ -94,7 +94,7 @@ ul {
     transform 0.1s ease,
     box-shadow 0.1s ease;
   border: 1px solid transparent;
-  width: min(150px, 33vw);
+  width: min(200px, 33vw);
   scroll-snap-align: start;
   color: inherit;
 }
@@ -121,8 +121,8 @@ ul {
 
 .menu {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: var(--space-sm);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
   text-align: center;
   padding: var(--space-sm);
   overflow-y: auto;
