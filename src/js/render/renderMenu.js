@@ -1,16 +1,16 @@
 import { state } from "../state.js";
-import { menuElement } from "../dom.js";
+import { dom } from "../dom.js";
 export function renderMenu() {
   if (state.selectedCategoryID == null)
-    return (menuElement.textContent = "NO ITEM TO SHOW");
+    return (dom.menuElement.textContent = "NO ITEM TO SHOW");
   const category = state.categories.find(
     (cat) => cat.id === state.selectedCategoryID,
   );
   if (!category || !category.items || category.items.length === 0) {
-    menuElement.textContent = "NO ITEM TO SHOW";
+    dom.menuElement.textContent = "NO ITEM TO SHOW";
     return;
   }
-  menuElement.innerHTML = category.items
+  dom.menuElement.innerHTML = category.items
     .map(
       (item) => `
   <article class="item-card" data-category-id="${state.selectedCategoryID}" data-item-id="${item.id}" data-action="select-item">

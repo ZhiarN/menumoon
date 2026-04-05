@@ -1,12 +1,11 @@
 import { state } from "../state.js";
-import { categoryListElement } from "../dom.js";
+import { dom } from "../dom.js";
 export function renderCategories() {
-  const categoryNavElement = document.querySelector(".category-nav");
   if (!Array.isArray(state.categories) || state.categories.length === 0) {
-    categoryNavElement.textContent = "NO CATEGORIES TO SHOW";
+    dom.categoryNavElement.textContent = "NO CATEGORIES TO SHOW";
     return;
   }
-  categoryListElement.innerHTML = state.categories
+  dom.categoryListElement.innerHTML = state.categories
     .map(
       (cat) => `
       <li class="category-list__item">
