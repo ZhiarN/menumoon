@@ -1,7 +1,7 @@
 :root {
   --color-main: oklch(16.376% 0.00002 271.152);
   --color-secondary: oklch(58.632% 0.00007 271.152 / 0.16);
-  --color-accent: oklch(75.201% 0.1501 105.175);
+  --color-accent: oklch(54.973% 0.1 80.518);
   --color-text-light: oklch(95.234% 0.00862 16.618);
   --color-text-dark: oklch(0% 0 0);
   --state-selected-shadow: inset 0 0 10px black;
