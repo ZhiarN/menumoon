@@ -25,4 +25,8 @@ export function addListeners() {
     }
     renderUI();
   });
+  dom.editButton.addEventListener("click", () => {
+    document.body.dataset.mode =
+      document.body.dataset.mode === "edit" ? "view" : "edit";
+  });
 }
