@@ -73,6 +73,12 @@ body {
     border-radius: inherit;
   }
 }
+[data-mode="view"] .edit-controls {
+  display: none;
+}
+[data-mode="edit"] .edit-controls {
+  display: block;
+}
 
 .app-main {
   display: grid;
