@@ -73,10 +73,10 @@ body {
     border-radius: inherit;
   }
 }
-[data-mode="view"] .edit-controls {
+[data-auth="guest"] .edit-controls {
   display: none;
 }
-[data-mode="edit"] .edit-controls {
+[data-auth="admin"] .edit-controls {
   display: block;
 }
 
