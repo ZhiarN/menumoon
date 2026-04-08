@@ -18,7 +18,7 @@
     />
   </head>
 
-  <body data-app="menumoon" data-auth="guest" data-mode="view">
+  <body data-app="menumoon" data-auth="admin" data-mode="view">
     <div class="app-root" data-component="root">
       <header class="app-header glass">Menumoon</header>
       <main class="app-main">
@@ -41,32 +41,6 @@
         </svg>
       </button>
     </div>
-    <template id="category-card-template">
-      <li class="category-list__item">
-        <button
-          data-category-id=""
-          class="category-list__button"
-          data-action="select-category"
-        >
-          <img class="category-list__image" src="" alt="" />
-          <span class="category-list__name"></span>
-        </button>
-      </li>
-    </template>
-    <template id="item-card-template">
-      <button
-        class="item-card"
-        data-category-id=""
-        data-item-id=""
-        data-action="select-item"
-      >
-        <img alt="Steak" class="item-card__image" src="" />
-        <div class="item-card__info">
-          <h3 class="item-card__name"></h3>
-          <data class="item-card__price" value=""></data>
-        </div>
-      </button>
-    </template>
     <script type="module" src="/src/js/main.js" defer></script>
   </body>
 </html>
