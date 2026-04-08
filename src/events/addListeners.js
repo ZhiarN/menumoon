@@ -1,6 +1,6 @@
-import { state } from "../state.js";
+import { state } from "../state/store.js";
 import { renderUI } from "../render/renderUI.js";
-import { dom } from "../dom.js";
+import { dom } from "../utils/dom.js";
 export function addListeners() {
   dom.categoryListElement.addEventListener("click", (event) => {
     const card = event.target.closest("[data-action=select-category]");

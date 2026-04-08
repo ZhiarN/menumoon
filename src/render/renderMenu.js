@@ -1,5 +1,5 @@
-import { state } from "../state.js";
-import { dom } from "../dom.js";
+import { state } from "../state/store.js";
+import { dom } from "../utils/dom.js";
 export function renderMenu() {
   if (state.selectedCategoryID == null)
     return (dom.menuElement.textContent = "NO ITEM TO SHOW");

@@ -1,5 +1,5 @@
-import { state } from "../state.js";
-import { dom } from "../dom.js";
+import { state } from "../state/store.js";
+import { dom } from "../utils/dom.js";
 export function renderCategories() {
   if (!Array.isArray(state.categories) || state.categories.length === 0) {
     dom.categoryNavElement.textContent = "NO CATEGORIES TO SHOW";
