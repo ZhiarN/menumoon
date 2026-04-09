@@ -41,6 +41,25 @@
         </svg>
       </button>
     </div>
+    <div id="templates" style="display: none">
+      <template id="category-card-template">
+        <li class="category-list__item">
+          <button class="category-card" data-action="select-category">
+            <img class="category-card__image" />
+            <span class="category-card__name"></span>
+          </button>
+        </li>
+      </template>
+      <template id="item-card-template">
+        <article class="item-card" data-action="select-item">
+          <img class="item-card__image" />
+          <div class="item-card__info">
+            <h3 class="item-card__name"></h3>
+            <data class="item-card__price"></data>
+          </div>
+        </article>
+      </template>
+    </div>
     <script type="module" src="/src/main.js" defer></script>
   </body>
 </html>

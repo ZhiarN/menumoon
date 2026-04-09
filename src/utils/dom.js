@@ -6,4 +6,6 @@ export const dom = {
     `[data-component="category-list"]`,
   ),
   categoryNavElement: document.querySelector(".category-nav"),
+  itemTemplate: document.getElementById("item-card-template"),
+  categoryTemplate: document.getElementById("category-card-template"),
 };
