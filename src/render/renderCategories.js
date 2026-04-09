@@ -1,23 +1,17 @@
-import { state } from "../state/store.js";
+import { CategoryCard } from "../components/CategoryCard/CategoryCard.js";
 import { dom } from "../utils/dom.js";
-export function renderCategories() {
-  if (!Array.isArray(state.categories) || state.categories.length === 0) {
-    dom.categoryNavElement.textContent = "NO CATEGORIES TO SHOW";
+export function renderCategories(categories) {
+  if (!dom.categoryListElement) {
+    console.error("categoryListElement missing");
     return;
   }
-  dom.categoryListElement.innerHTML = state.categories
-    .map(
-      (cat) => `
-      <li class="category-list__item">
-        <button
-        data-category-id="${cat.id}"
-        class="category-list__button ${cat.id === state.selectedCategoryID ? "is-selected" : ""} ${cat.id === state.selectedCategoryID && state.editModeOn ? "is-editing" : ""}"
-        data-action="select-category"
-        >
-        <img class="category-list__image" src="${cat.image}" alt="${cat.name} category">
-        <span class="category-list__name">${cat.name}</span>
-        </button>
-      </li>`,
-    )
-    .join("");
+  if (!Array.isArray(categories) || categories.length === 0) {
+    dom.categoryListElement.textContent = "NO CATEGORY INFORMATION STORED";
+    return;
+  }
+  const frag = document.createDocumentFragment();
+  for (const category of categories) {
+    frag.append(CategoryCard(category));
+  }
+  dom.categoryListElement.replaceChildren(frag);
 }
