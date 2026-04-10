@@ -252,5 +252,5 @@ export const state = {
   currentUserID: null,
   selectedCategoryID: null,
   selectedItemID: null,
-  editModeOn: false,
+  isEditMode: false,
 };
