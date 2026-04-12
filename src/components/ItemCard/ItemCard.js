@@ -1,4 +1,5 @@
 import { dom } from "../../utils/dom.js";
+import { formatPrice } from "../../utils/formatPrice.js";
 export function ItemCard(item) {
   const { id, name, price, image } = item;
   const template = dom.itemTemplate;
@@ -17,7 +18,7 @@ export function ItemCard(item) {
   el.img.src = image || "/src/media/item-placeholder.webp";
   el.img.alt = name;
   el.name.textContent = name;
-  const priceValue = Number(price) || 0;
-  el.price.textContent = priceValue.toLocaleString();
+  const priceValue = formatPrice(price);
+  el.price.textContent = priceValue ?? "0";
   return el.root;
 }
