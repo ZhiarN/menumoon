@@ -37,7 +37,6 @@ export function addListeners() {
   if (dom.editButton) {
     dom.editButton.addEventListener("click", () => {
       updateState({ isEditMode: !state.isEditMode });
-      document.body.dataset.mode = state.isEditMode ? "edit" : "view";
     });
   } else {
     console.warn("editButton missing, edit mode toggling disabled.");
