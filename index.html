@@ -18,7 +18,8 @@
     />
   </head>
 
-  <body data-app="menumoon" data-auth="admin" data-mode="view">
+  <body data-app="menumoon" data-mode="view">
+    <div class="edit-banner">EDIT MODE</div>
     <div class="app-root" data-component="root">
       <header class="app-header glass">Menumoon</header>
       <main class="app-main">
@@ -41,25 +42,162 @@
         </svg>
       </button>
     </div>
-    <div id="templates" style="display: none">
-      <template id="category-card-template">
-        <li class="category-list__item">
-          <button class="category-card" data-action="select-category">
-            <img class="category-card__image" />
-            <span class="category-card__name"></span>
+    <template id="category-card-template">
+      <li class="category-list__item">
+        <button class="category-card" data-action="select-category">
+          <img class="category-card__image" />
+          <span class="category-card__name"></span>
+        </button>
+      </li>
+    </template>
+    <template id="item-card-template">
+      <article class="item-card" data-action="select-item">
+        <img class="item-card__image" />
+        <div class="item-card__info">
+          <h3 class="item-card__name"></h3>
+          <data class="item-card__price"></data>
+        </div>
+      </article>
+    </template>
+    <template id="item-modal-template">
+      <dialog class="modal item-modal" role="dialog" aria-modal="true">
+        <header>
+          <h2 class="modal-title">Item Control Panel</h2>
+        </header>
+
+        <button type="button" class="modal-close" aria-label="Close modal">
+          Close
+        </button>
+
+        <form class="item-form" enctype="multipart/form-data">
+          <fieldset class="item-info-field">
+            <legend>Item Information</legend>
+
+            <label>
+              Item Name
+              <input
+                type="text"
+                class="item-name"
+                name="ItemName"
+                minlength="2"
+                maxlength="32"
+                data-fill="name"
+                required
+              />
+            </label>
+
+            <label>
+              Item Price
+              <input
+                type="number"
+                class="item-price"
+                name="ItemPrice"
+                min="0"
+                max="999999999"
+                data-fill="price"
+                required
+              />
+            </label>
+          </fieldset>
+
+          <fieldset class="item-image-field">
+            <legend>Image Properties</legend>
+
+            <label>
+              Set Image
+              <input
+                type="file"
+                accept="image/*"
+                class="item-image"
+                name="ItemImage"
+              />
+            </label>
+
+            <p class="img-tip">
+              Upload the image that best demonstrates the item
+            </p>
+            <p class="img-tip">Images should be at least 512x512 pixels</p>
+          </fieldset>
+
+          <fieldset class="item-options-field">
+            <legend>Item Options</legend>
+
+            <label>
+              Contains Allergens?
+              <input
+                type="checkbox"
+                class="item-allergen"
+                value="allergens"
+                name="AllergenCheck"
+                data-fill="allergen"
+              />
+            </label>
+
+            <label>
+              In Stock?
+              <input
+                type="checkbox"
+                class="item-stock"
+                name="ItemStock"
+                value="Available"
+                data-fill="stock"
+              />
+            </label>
+          </fieldset>
+
+          <button type="submit">Save</button>
+          <button type="button" class="modal-cancel" formnovalidate>
+            Cancel
           </button>
-        </li>
-      </template>
-      <template id="item-card-template">
-        <article class="item-card" data-action="select-item">
-          <img class="item-card__image" />
-          <div class="item-card__info">
-            <h3 class="item-card__name"></h3>
-            <data class="item-card__price"></data>
-          </div>
-        </article>
-      </template>
-    </div>
+        </form>
+      </dialog>
+    </template>
+    <template id="category-modal-template">
+      <dialog class="modal category-modal" role="dialog" aria-modal="true">
+        <header>
+          <h2 class="modal-title">Category Control Panel</h2>
+        </header>
+
+        <button type="button" class="modal-close" aria-label="Close modal">
+          Close
+        </button>
+
+        <form class="category-form" enctype="multipart/form-data">
+          <label>
+            Category Name
+            <input
+              type="text"
+              class="category-name"
+              name="CategoryName"
+              minlength="2"
+              maxlength="32"
+              data-fill="name"
+              required
+            />
+          </label>
+
+          <label>
+            Set Image
+            <input
+              type="file"
+              accept="image/*"
+              class="category-image"
+              name="CategoryImage"
+            />
+          </label>
+
+          <p class="img-tip">
+            Upload the image that best demonstrates the item
+          </p>
+          <p class="img-tip">Images should be at least 512x512 pixels</p>
+
+          <button type="submit">Save</button>
+          <button type="button" class="modal-cancel" formnovalidate>
+            Cancel
+          </button>
+        </form>
+      </dialog>
+    </template>
     <script type="module" src="/src/main.js" defer></script>
   </body>
 </html>
