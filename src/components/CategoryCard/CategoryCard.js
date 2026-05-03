@@ -1,4 +1,5 @@
 import { dom } from "../../utils/dom.js";
+import { state } from "../../state/store.js";
 export function CategoryCard(category) {
   const { id, image, name } = category;
   const template = dom.categoryTemplate;
@@ -13,9 +14,13 @@ export function CategoryCard(category) {
   if (!el.root || !el.categoryCard || !el.img || !el.name) {
     throw new Error("CategoryCard template is missing required elelemnts");
   }
+  if (id === state.selectedCategoryID) {
+    el.categoryCard.classList.toggle("is-selected");
+  }
   el.categoryCard.setAttribute("data-category-id", id);
+  el.categoryCard.setAttribute("data-category-name", name);
   el.img.src = image || "/src/media/category-placeholder.webp";
-  el.img.alt = name;
+  el.img.alt = name || "Category Card";
   el.name.textContent = name;
   return el.root;
 }
