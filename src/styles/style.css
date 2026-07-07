@@ -1,7 +1,7 @@
 :root {
   --color-main: oklch(16.376% 0.00002 271.152);
   --color-secondary: oklch(58.632% 0.00007 271.152 / 0.16);
-  --color-accent: oklch(75.201% 0.1501 105.175);
+  --color-accent: oklch(54.973% 0.1 80.518);
   --color-text-light: oklch(95.234% 0.00862 16.618);
   --color-text-dark: oklch(0% 0 0);
   --state-selected-shadow: inset 0 0 10px black;
@@ -34,6 +34,7 @@ body {
   flex-direction: column;
   gap: var(--space-sm);
   min-height: 100svh;
+  z-index: 0;
 }
 .app-header {
   display: flex;
@@ -52,11 +53,39 @@ body {
   transform: scale(1.03);
 }
 
+.edit-button--float {
+  background-color: var(--color-accent);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  border-radius: 10%;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  .edit-button__icon {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+}
+[data-auth="guest"] .edit-controls {
+  display: none;
+}
+[data-auth="admin"] .edit-controls {
+  display: block;
+}
+
 .app-main {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   flex: 1;
+  position: relative;
   gap: var(--space-sm);
   min-height: 0;
 }
@@ -83,7 +112,7 @@ ul {
   scroll-padding-left: var(--space-xl);
   scroll-padding-right: var(--space-xl);
 }
-.category-list__button {
+.category-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,20 +128,20 @@ ul {
   color: inherit;
 }
 
-.category-list__button:hover {
+.category-card:hover {
   transform: translateY(-3px);
 }
 
-.category-list__button:active {
+.category-card:active {
   transform: scale(0.95);
 }
-.category-list__image {
+.category-card__image {
   aspect-ratio: 1 / 1;
   display: block;
   object-fit: cover;
   max-width: 100%;
 }
-.category-list__name {
+.category-card__name {
   font-size: var(--font-size-lg);
   font-weight: 600;
   text-align: center;
@@ -159,7 +188,7 @@ ul {
   border-radius: var(--default-radius);
 }
 .item-card:hover .item-card__image {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .item-card:active {
