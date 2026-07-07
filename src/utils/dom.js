@@ -7,4 +7,6 @@ export const dom = {
   categoryNavElement: document.querySelector(".category-nav") || "",
   itemTemplate: document.getElementById("item-card-template") || "",
   categoryTemplate: document.getElementById("category-card-template") || "",
+  categoryModalTemplate: document.getElementById("category-modal-template"),
+  itemModalTemplate: document.getElementById("item-modal-template"),
 };

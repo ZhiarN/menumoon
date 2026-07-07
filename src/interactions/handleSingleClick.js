@@ -7,7 +7,7 @@ export function handleSingleClick(card) {
 
   switch (action) {
     case "select-category": {
-      const id = CARD_SCHEMA.CATEGORY.idKey;
+      const id = card.dataset.categoryId;
       const isSame = id === state.selectedCategoryID;
       updateState({
         selectedCategoryID: isSame ? null : id,
