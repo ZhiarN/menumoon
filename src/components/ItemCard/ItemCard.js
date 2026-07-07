@@ -14,6 +14,8 @@ export function ItemCard(item) {
     throw new Error("ItemCard template is missing required elements");
   }
   el.root.setAttribute("data-item-id", id);
+  el.root.setAttribute("data-item-name", name);
+  el.root.setAttribute("data-item-price", price);
   el.root.dataset.action = "select-item";
   el.img.src = image || "/src/media/item-placeholder.webp";
   el.img.alt = name;
