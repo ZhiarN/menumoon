@@ -13,6 +13,7 @@
 	"license": "ISC",
 	"packageManager": "pnpm@10.26.0",
 	"devDependencies": {
-		"@biomejs/biome": "2.5.2"
+		"@biomejs/biome": "2.5.2",
+		"vite": "^8.1.3"
 	}
 }
