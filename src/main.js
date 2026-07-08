@@ -1,9 +1,10 @@
-import { renderUI } from "./render/renderUI.js";
 import { addListeners } from "./events/addListeners.js";
+import { renderUI } from "./render/renderUI.js";
 import { validateDOM } from "./utils/domValidate.js";
+
 function startApp() {
-  validateDOM();
-  renderUI();
-  addListeners();
+	validateDOM();
+	renderUI();
+	addListeners();
 }
 startApp();

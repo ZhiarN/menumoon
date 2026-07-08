@@ -1,30 +1,29 @@
-import { state } from "../state/store.js";
 import { updateState } from "../actions/updateState.js";
-import { CARD_SCHEMA } from "../utils/CardSchema.js";
+import { state } from "../state/store.js";
 
 export function handleSingleClick(card) {
-  const action = card.dataset.action;
+	const action = card.dataset.action;
 
-  switch (action) {
-    case "select-category": {
-      const id = card.dataset.categoryId;
-      const isSame = id === state.selectedCategoryID;
-      updateState({
-        selectedCategoryID: isSame ? null : id,
-        selectedItemID: null,
-      });
-      return;
-    }
+	switch (action) {
+		case "select-category": {
+			const id = card.dataset.categoryId;
+			const isSame = id === state.selectedCategoryID;
+			updateState({
+				selectedCategoryID: isSame ? null : id,
+				selectedItemID: null,
+			});
+			return;
+		}
 
-    case "select-item": {
-      const id = card.dataset.itemId;
-      const isSame = id === state.selectedItemID;
+		case "select-item": {
+			const id = card.dataset.itemId;
+			const isSame = id === state.selectedItemID;
 
-      state.selectedItemID = isSame ? "null" : id;
-      return;
-    }
+			state.selectedItemID = isSame ? "null" : id;
+			return;
+		}
 
-    default:
-      return;
-  }
+		default:
+			return;
+	}
 }

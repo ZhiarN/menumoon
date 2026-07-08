@@ -31,10 +31,12 @@
         </section>
       </main>
       <button
+        type="button"
         class="edit-button--float edit-controls"
         data-action="toggle-edit"
       >
         <svg class="edit-button__icon" viewBox="0 0 640 640">
+          <title>Editmode Toggle Button</title>
           <path
             fill="currentColor"
             d="M100.4 417.2C104.5 402.6 112.2 389.3 123 378.5L304.2 197.3L338.1 163.4C354.7 180 389.4 214.7 442.1 267.4L476 301.3L442.1 335.2L260.9 516.4C250.2 527.1 236.8 534.9 222.2 539L94.4 574.6C86.1 576.9 77.1 574.6 71 568.4C64.9 562.2 62.6 553.3 64.9 545L100.4 417.2zM156 413.5C151.6 418.2 148.4 423.9 146.7 430.1L122.6 517L209.5 492.9C215.9 491.1 221.7 487.8 226.5 483.2L155.9 413.5zM510 267.4C493.4 250.8 458.7 216.1 406 163.4L372 129.5C398.5 103 413.4 88.1 416.9 84.6C430.4 71 448.8 63.4 468 63.4C487.2 63.4 505.6 71 519.1 84.6L554.8 120.3C568.4 133.9 576 152.3 576 171.4C576 190.5 568.4 209 554.8 222.5C551.3 226 536.4 240.9 509.9 267.4z"
@@ -44,23 +46,27 @@
     </div>
     <template id="category-card-template">
       <li class="category-list__item">
-        <button class="category-card" data-action="select-category">
-          <img class="category-card__image" />
+        <button
+          type="button"
+          class="category-card"
+          data-action="select-category"
+        >
+          <img class="category-card__image" alt="" />
           <span class="category-card__name"></span>
         </button>
       </li>
     </template>
     <template id="item-card-template">
       <article class="item-card" data-action="select-item">
-        <img class="item-card__image" />
+        <img class="item-card__image" alt="" />
         <div class="item-card__info">
-          <h3 class="item-card__name"></h3>
+          <h3 class="item-card__name" aria-label="Item Name"></h3>
           <data class="item-card__price"></data>
         </div>
       </article>
     </template>
     <template id="item-modal-template">
-      <dialog class="modal item-modal" role="dialog" aria-modal="true">
+      <dialog class="modal item-modal" aria-modal="true">
         <header>
           <h2 class="modal-title">Item Control Panel</h2>
         </header>
@@ -153,7 +159,7 @@
       </dialog>
     </template>
     <template id="category-modal-template">
-      <dialog class="modal category-modal" role="dialog" aria-modal="true">
+      <dialog class="modal category-modal" aria-modal="true">
         <header>
           <h2 class="modal-title">Category Control Panel</h2>
         </header>

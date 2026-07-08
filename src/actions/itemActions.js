@@ -1,35 +1,35 @@
-import { state } from "../state/store.js";
 import { renderUI } from "../render/renderUI.js";
+import { state } from "../state/store.js";
 export function removeItem() {
-  if (state.selectedItemID == null) return alert("No Item Selected");
-  const category = state.categories.find(
-    (cat) => cat.id === state.selectedCategoryID,
-  );
-  const index = category.items.findIndex(
-    (item) => item.id === state.selectedItemID,
-  );
-  if (index === -1) return;
-  category.items.splice(index, 1);
-  state.selectedItemID = null;
-  renderUI();
+	if (state.selectedItemID == null) return alert("No Item Selected");
+	const category = state.categories.find(
+		(cat) => cat.id === state.selectedCategoryID,
+	);
+	const index = category.items.findIndex(
+		(item) => item.id === state.selectedItemID,
+	);
+	if (index === -1) return;
+	category.items.splice(index, 1);
+	state.selectedItemID = null;
+	renderUI();
 }
 
 export function addItem(newItemName, newItemPrice, newItemImage) {
-  if (state.selectedCategoryID == null) {
-    alert("No Category Selected");
-    return;
-  }
-  const category = state.categories.find(
-    (cat) => cat.id === state.selectedCategoryID,
-  );
+	if (state.selectedCategoryID == null) {
+		alert("No Category Selected");
+		return;
+	}
+	const category = state.categories.find(
+		(cat) => cat.id === state.selectedCategoryID,
+	);
 
-  const newItem = {
-    id: `${category.id}_item${category.items.length + 1}`,
-    name: newItemName,
-    price: newItemPrice,
-    image: newItemImage,
-  };
+	const newItem = {
+		id: `${category.id}_item${category.items.length + 1}`,
+		name: newItemName,
+		price: newItemPrice,
+		image: newItemImage,
+	};
 
-  category.items.push(newItem);
-  renderUI();
+	category.items.push(newItem);
+	renderUI();
 }
