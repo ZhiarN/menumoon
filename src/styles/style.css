@@ -5,6 +5,7 @@
 	--color-accent: oklch(54.973% 0.1 80.518);
 	--color-text-light: oklch(95.234% 0.00862 16.618);
 	--color-text-dark: oklch(0% 0 0);
+	--color-warn: oklch(63.882% 0.24754 31.187);
 	--state-selected-shadow: inset 0 0 10px black;
 	--state-edited-shadow: inset 0 0 10px red;
 	--space-sm: 0.5rem;
@@ -207,10 +208,10 @@ ul {
 }
 
 .glass {
-	background: rgba(124, 124, 124, 0.16);
-	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
-	backdrop-filter: blur(10px) saturate(150%);
-	-webkit-backdrop-filter: blur(10px);
+	background: rgba(124, 124, 124, 0.3);
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(16px) saturate(150%);
+	-webkit-backdrop-filter: blur(16px);
 }
 .hidden-visually {
 	position: absolute;
@@ -252,4 +253,188 @@ ul {
 [data-mode="edit"] .category-card:hover {
 	box-shadow: 0 0 0 5px var(--color-accent-soft);
 	transform: translateY(-2px);
+}
+
+.modal {
+	display: flex;
+	flex-direction: column;
+	padding: var(--space-md);
+	border-radius: var(--default-radius);
+	color: var(--color-text-light);
+	border: 1px solid var(--color-accent);
+	margin: auto;
+	width: 80%;
+	hr {
+		height: 4px;
+		margin-block: var(--space-sm);
+		border: none;
+		background: var(--color-accent);
+	}
+
+	.modal-title {
+		text-align: center;
+		font-weight: 900;
+		width: 100%;
+	}
+
+	header {
+		display: flex;
+		position: relative;
+		min-height: 50px;
+		align-items: center;
+		.modal-close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			border: none;
+			aspect-ratio: 1 / 1;
+			width: 2.5rem;
+			background: var(--color-accent);
+			border-radius: var(--default-radius);
+			color: var(--color-text-light);
+			transition: transform 0.3s ease;
+
+			&:hover {
+				cursor: pointer;
+				transform: scale(0.94);
+			}
+		}
+		.trash-icon {
+			background: none;
+			border: none;
+			position: absolute;
+			aspect-ratio: 1 / 1;
+			transition: transform 0.3s ease;
+			top: 0;
+			left: 0;
+			width: 2.5rem;
+			&:hover {
+				cursor: pointer;
+				transform: scale(0.94);
+			}
+			&:hover svg > path {
+				stroke: var(--color-warn);
+			}
+			svg {
+				path {
+					transition: stroke 0.3s ease;
+					stroke: var(--color-accent);
+				}
+			}
+		}
+	}
+	.modal-action__buttons {
+		display: flex;
+		justify-content: space-evenly;
+
+		button {
+			padding: var(--space-md);
+			width: 100%;
+			max-width: 30vw;
+			border: none;
+			box-shadow: 1px 1px 10px var(--color-accent);
+			border-radius: var(--default-radius);
+			background: var(--color-accent);
+			color: inherit;
+			font-size: var(--font-size-lg);
+			transition: transform 0.3s ease;
+
+			&:hover {
+				transform: scale(0.94);
+			}
+		}
+	}
+}
+.form {
+	display: flex;
+	gap: var(--space-sm);
+	flex-direction: column;
+	.form__text-input {
+		box-shadow: inset 1px 1px 10px var(--color-accent-soft);
+		text-align: center;
+		min-height: 6vh;
+		background: var(--color-accent-soft);
+		border: none;
+		border-radius: var(--space-sm);
+	}
+	fieldset {
+		border: 2px solid var(--color-accent-soft);
+		border-radius: var(--default-radius);
+		padding: var(--space-sm);
+		display: flex;
+		width: 100%;
+		gap: var(--space-sm);
+		flex-direction: column;
+		label {
+			display: flex;
+			font-weight: 600;
+			flex-direction: column;
+			text-align: center;
+		}
+		legend {
+			font-size: var(--font-size-lg);
+			font-weight: 600;
+			padding: var(--space-sm);
+			text-align: center;
+		}
+	}
+	.form__options {
+		display: flex;
+		justify-content: center;
+		gap: var(--space-lg);
+		width: 100%;
+		div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.form__options__checkbox {
+			aspect-ratio: 1;
+			width: var(--font-size-xxl);
+			box-shadow: inset 0px 0px 100px var(--color-accent-soft);
+		}
+	}
+
+	.form__image-controls {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 100%;
+
+		.form__image-input {
+			cursor: pointer;
+			transition: transform 0.3s ease;
+			width: 100%;
+			max-width: 30vw;
+			padding: var(--space-md);
+			margin: var(--space-sm);
+			background-color: var(--color-accent);
+			border-radius: var(--default-radius);
+
+			&:hover {
+				transform: scale(0.93);
+			}
+		}
+		input {
+			display: none;
+		}
+		.image-preview-wrapper {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			border: 1px solid var(--color-accent);
+			width: 100%;
+			min-height: 130px;
+			max-width: 300px;
+			.image-preview {
+				max-width: 100%;
+				max-height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}
+.img-tip {
+	text-align: center;
 }

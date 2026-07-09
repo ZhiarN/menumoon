@@ -32,6 +32,7 @@
         type="button"
         class="edit-button--float edit-controls"
         data-action="toggle-edit"
+        aria-pressed="false"
       >
         <svg class="edit-button__icon" viewBox="0 0 640 640">
           <title>Editmode Toggle Button</title>
@@ -64,144 +65,221 @@
       </article>
     </template>
     <template id="item-modal-template">
-      <dialog class="modal item-modal" aria-modal="true">
+      <dialog
+        class="modal glass"
+        aria-modal="true"
+        id="item-modal"
+        aria-labelledby="item-modal-title"
+      >
         <header>
-          <h2 class="modal-title">Item Control Panel</h2>
+          <h2 class="modal-title" id="item-modal-title">Item Control Panel</h2>
+          <button type="button" class="modal-close" aria-label="Close modal">
+            &times;
+          </button>
+          <button
+            type="button"
+            aria-label="Delete item"
+            class="trash-icon"
+            data-action="delete-item"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <title>Trash Icon</title>
+              <path d="M10 11v6" />
+              <path d="M14 11v6" />
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+              <path d="M3 6h18" />
+              <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
+          </button>
         </header>
+        <hr aria-hidden="true" />
 
-        <button type="button" class="modal-close" aria-label="Close modal">
-          Close
-        </button>
-
-        <form class="item-form" enctype="multipart/form-data">
-          <fieldset class="item-info-field">
+        <form class="form" enctype="multipart/form-data">
+          <fieldset>
             <legend>Item Information</legend>
 
-            <label>
-              Item Name
-              <input
-                type="text"
-                class="item-name"
-                name="ItemName"
-                minlength="2"
-                maxlength="32"
-                data-fill="name"
-                required
-              />
-            </label>
-
-            <label>
-              Item Price
-              <input
-                type="number"
-                class="item-price"
-                name="ItemPrice"
-                min="0"
-                max="999999999"
-                data-fill="price"
-                required
-              />
-            </label>
+            <label for="item-name"> Item Name </label>
+            <input
+              type="text"
+              class="form__text-input"
+              id="item-name"
+              name="ItemName"
+              minlength="2"
+              maxlength="32"
+              data-fill="name"
+              required
+            />
+            <label for="item-price"> Item Price </label>
+            <input
+              type="number"
+              class="form__text-input"
+              id="item-price"
+              name="ItemPrice"
+              min="0"
+              step="0.01"
+              data-fill="price"
+              required
+            />
           </fieldset>
 
-          <fieldset class="item-image-field">
+          <fieldset>
             <legend>Image Properties</legend>
 
-            <label>
-              Set Image
+            <div class="form__image-controls">
+              <label for="item-image-input" class="form__image-input">
+                Browse...
+              </label>
               <input
                 type="file"
+                id="item-image-input"
                 accept="image/*"
-                class="item-image"
                 name="ItemImage"
               />
-            </label>
-
+              <div class="image-preview-wrapper">
+                Image Preview
+                <img class="image-preview" alt="" />
+              </div>
+            </div>
             <p class="img-tip">
               Upload the image that best demonstrates the item
             </p>
             <p class="img-tip">Images should be at least 512x512 pixels</p>
           </fieldset>
 
-          <fieldset class="item-options-field">
+          <fieldset>
             <legend>Item Options</legend>
 
-            <label>
-              Contains Allergens?
-              <input
-                type="checkbox"
-                class="item-allergen"
-                value="allergens"
-                name="AllergenCheck"
-                data-fill="allergen"
-              />
-            </label>
-
-            <label>
-              In Stock?
-              <input
-                type="checkbox"
-                class="item-stock"
-                name="ItemStock"
-                value="Available"
-                data-fill="stock"
-              />
-            </label>
+            <div class="form__options">
+              <div>
+                <label for="allergens"> Contains Allergens? </label>
+                <input
+                  type="checkbox"
+                  class="form__options__checkbox"
+                  id="allergens"
+                  name="ItemAllergens"
+                  data-fill="allergen"
+                />
+              </div>
+              <div>
+                <label for="stock"> In Stock? </label>
+                <input
+                  type="checkbox"
+                  class="form__options__checkbox"
+                  id="stock"
+                  name="ItemStock"
+                  data-fill="stock"
+                />
+              </div>
+            </div>
           </fieldset>
 
-          <button type="submit">Save</button>
-          <button type="button" class="modal-cancel" formnovalidate>
-            Cancel
-          </button>
+          <div class="modal-action__buttons">
+            <button type="submit">Update</button>
+            <button type="button" class="modal-cancel">Cancel</button>
+          </div>
         </form>
       </dialog>
     </template>
     <template id="category-modal-template">
-      <dialog class="modal category-modal" aria-modal="true">
+      <dialog
+        class="modal glass"
+        aria-modal="true"
+        id="category-modal"
+        aria-labelledby="category-modal-title"
+      >
         <header>
-          <h2 class="modal-title">Category Control Panel</h2>
+          <h2 class="modal-title" id="category-modal-title">
+            Category Control Panel
+          </h2>
+
+          <button type="button" class="modal-close" aria-label="Close modal">
+            &times;
+          </button>
+          <button
+            type="button"
+            class="trash-icon"
+            aria-label="Delete category"
+            data-action="delete-category"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <title>Trash Icon</title>
+              <path d="M10 11v6" />
+              <path d="M14 11v6" />
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+              <path d="M3 6h18" />
+              <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
+          </button>
         </header>
+        <hr aria-hidden="true" />
 
-        <button type="button" class="modal-close" aria-label="Close modal">
-          Close
-        </button>
-
-        <form class="category-form" enctype="multipart/form-data">
-          <label>
-            Category Name
+        <form class="form" enctype="multipart/form-data">
+          <fieldset>
+            <legend>Category Information</legend>
+            <label for="category-name"> Category Name </label>
             <input
               type="text"
-              class="category-name"
+              class="form__text-input"
+              id="category-name"
               name="CategoryName"
               minlength="2"
               maxlength="32"
               data-fill="name"
               required
             />
-          </label>
+          </fieldset>
 
-          <label>
-            Set Image
-            <input
-              type="file"
-              accept="image/*"
-              class="category-image"
-              name="CategoryImage"
-            />
-          </label>
+          <fieldset>
+            <legend>Image Properties</legend>
 
-          <p class="img-tip">
-            Upload the image that best demonstrates the item
-          </p>
-          <p class="img-tip">Images should be at least 512x512 pixels</p>
+            <div class="form__image-controls">
+              <label for="category-image-input" class="form__image-input">
+                Browse...
+              </label>
+              <input
+                type="file"
+                id="category-image-input"
+                accept="image/*"
+                name="CategoryImage"
+              />
+              <div class="image-preview-wrapper">
+                Image Preview
+                <img class="image-preview" alt="" />
+              </div>
+            </div>
+            <p class="img-tip">
+              Upload the image that best demonstrates the category
+            </p>
+            <p class="img-tip">Images should be at least 256x256 resolution</p>
+          </fieldset>
 
-          <button type="submit">Save</button>
-          <button type="button" class="modal-cancel" formnovalidate>
-            Cancel
-          </button>
+          <div class="modal-action__buttons">
+            <button type="submit">Update</button>
+            <button type="button" class="modal-cancel">Cancel</button>
+          </div>
         </form>
       </dialog>
     </template>
-    <script type="module" src="/src/main.js" defer></script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

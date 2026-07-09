@@ -10,7 +10,6 @@ export function handleDoubleClick(card) {
 		return;
 	}
 	if (action === "select-item") {
-		console.log("MODAL");
 		openItemModal(card);
 		return;
 	}
