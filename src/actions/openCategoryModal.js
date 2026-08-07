@@ -1,6 +1,5 @@
 import { dom } from "../utils/dom.js";
 export function openCategoryModal(card) {
-	console.log(Object.keys(card));
 	const template = dom.categoryModalTemplate;
 	const dialog = template.content.cloneNode(true).firstElementChild;
 	const el = {

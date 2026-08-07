@@ -18,7 +18,7 @@
 
   <body data-app="menumoon" data-mode="view">
     <div class="edit-banner">EDIT MODE</div>
-    <div class="app-root" data-component="root">
+    <div class="app-root">
       <header class="app-header glass">Menumoon</header>
       <main class="app-main">
         <nav class="category-nav glass">
@@ -78,9 +78,9 @@
           </button>
           <button
             type="button"
-            aria-label="Delete item"
+            aria-label="Remove item"
             class="trash-icon"
-            data-action="delete-item"
+            data-action="remove-item"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +184,7 @@
           </fieldset>
 
           <div class="modal-action__buttons">
-            <button type="submit">Update</button>
+            <button type="button">Update</button>
             <button type="button" class="modal-cancel">Cancel</button>
           </div>
         </form>
@@ -208,8 +208,8 @@
           <button
             type="button"
             class="trash-icon"
-            aria-label="Delete category"
-            data-action="delete-category"
+            aria-label="Remove category"
+            data-action="remove-category"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -274,7 +274,7 @@
           </fieldset>
 
           <div class="modal-action__buttons">
-            <button type="submit">Update</button>
+            <button type="button">Update</button>
             <button type="button" class="modal-cancel">Cancel</button>
           </div>
         </form>

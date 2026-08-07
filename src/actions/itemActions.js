@@ -1,16 +1,20 @@
 import { renderUI } from "../render/renderUI.js";
 import { state } from "../state/store.js";
-export function removeItem() {
-	if (state.selectedItemID == null) return alert("No Item Selected");
+export function removeItem(categoryId, itemId) {
+	if (!itemId || !categoryId) {
+		console.error("No category or item selected.");
+		return;
+	}
 	const category = state.categories.find(
-		(cat) => cat.id === state.selectedCategoryID,
+		(cat) => cat.id === categoryId,
 	);
+	if (!category) return;
 	const index = category.items.findIndex(
-		(item) => item.id === state.selectedItemID,
+		(item) => item.id === itemId
 	);
 	if (index === -1) return;
 	category.items.splice(index, 1);
-	state.selectedItemID = null;
+	state.editingItemID = null;
 	renderUI();
 }
 
