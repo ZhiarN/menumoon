@@ -1,11 +1,13 @@
 import { renderUI } from "../render/renderUI.js";
+import { menuStore } from "../state/menuStore.js";
 import { state } from "../state/store.js";
+
 export function removeItem(categoryId, itemId) {
 	if (!itemId || !categoryId) {
 		console.error("No category or item selected.");
 		return;
 	}
-	const category = state.categories.find(
+	const category = menuStore.find(
 		(cat) => cat.id === categoryId,
 	);
 	if (!category) return;
@@ -23,7 +25,7 @@ export function addItem(newItemName, newItemPrice, newItemImage) {
 		alert("No Category Selected");
 		return;
 	}
-	const category = state.categories.find(
+	const category = menuStore.find(
 		(cat) => cat.id === state.selectedCategoryID,
 	);
 

@@ -1,12 +1,14 @@
+import { menuStore } from "../state/menuStore.js";
 import { state } from "../state/store.js";
 import { renderCategories } from "./renderCategories.js";
 import { renderMenu } from "./renderMenu.js";
 
 export function renderUI() {
+	console.log(menuStore)
 	const selectedCategory =
-		state.categories.find((cat) => cat.id === state.selectedCategoryID) ||
-		state.categories[0];
-	renderCategories(state?.categories ?? []);
+		menuStore.find((cat) => cat.id === state.selectedCategoryID) ||
+		menuStore[0];
 
+	renderCategories(menuStore ?? []);
 	renderMenu(selectedCategory?.items ?? []);
 }

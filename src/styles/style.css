@@ -54,31 +54,25 @@ body {
 .app-header__button:hover {
 	transform: scale(1.03);
 }
+.edit-controls {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
+	position: fixed;
+	bottom: var(--space-md);
+	right: var(--space-md);
+}
 .edit-button--float {
 	background-color: var(--color-accent);
-	z-index: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
+	z-index: 100;	
 	border: none;
-	border-radius: 10%;
-	width: 3rem;
-	height: 3rem;
+	border-radius: var(--default-radius);
+	padding: var(--space-sm);
 	cursor: pointer;
-	.edit-button__icon {
-		width: 100%;
-		height: 100%;
-		border-radius: inherit;
+	.icon {
+		width: 40px;
+		height: 40px;
 	}
-}
-[data-auth="guest"] .edit-controls {
-	display: none;
-}
-[data-auth="admin"] .edit-controls {
-	display: block;
 }
 
 .app-main {
