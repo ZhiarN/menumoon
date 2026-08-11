@@ -1,5 +1,5 @@
 export const dom = {
-	appRoot: document.querySelector(`[data-component="root"]`) || "",
+	appRoot: document.querySelector(`[data-app="menumoon"]`) || "",
 	editButton: document.querySelector(`[data-action="toggle-edit"]`) || "",
 	menuElement: document.querySelector(`[data-component="menu-items"]`) || "",
 	categoryListElement:

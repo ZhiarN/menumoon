@@ -1,16 +1,22 @@
 import { renderUI } from "../render/renderUI.js";
+import { menuStore } from "../state/menuStore.js";
 import { state } from "../state/store.js";
-export function removeItem() {
-	if (state.selectedItemID == null) return alert("No Item Selected");
-	const category = state.categories.find(
-		(cat) => cat.id === state.selectedCategoryID,
+
+export function removeItem(categoryId, itemId) {
+	if (!itemId || !categoryId) {
+		console.error("No category or item selected.");
+		return;
+	}
+	const category = menuStore.find(
+		(cat) => cat.id === categoryId,
 	);
+	if (!category) return;
 	const index = category.items.findIndex(
-		(item) => item.id === state.selectedItemID,
+		(item) => item.id === itemId
 	);
 	if (index === -1) return;
 	category.items.splice(index, 1);
-	state.selectedItemID = null;
+	state.editingItemID = null;
 	renderUI();
 }
 
@@ -19,7 +25,7 @@ export function addItem(newItemName, newItemPrice, newItemImage) {
 		alert("No Category Selected");
 		return;
 	}
-	const category = state.categories.find(
+	const category = menuStore.find(
 		(cat) => cat.id === state.selectedCategoryID,
 	);
 

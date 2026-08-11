@@ -1,7 +1,7 @@
 import { dom } from "../../utils/dom.js";
 import { formatPrice } from "../../utils/formatPrice.js";
 export function ItemCard(item) {
-  const { id, name, price, image } = item;
+  const { id, categoryId, name, price, image } = item;
   const template = dom.itemTemplate;
   const card = template.content.cloneNode(true).firstElementChild;
   const el = {
@@ -14,6 +14,7 @@ export function ItemCard(item) {
     throw new Error("ItemCard template is missing required elements");
   }
   el.root.setAttribute("data-item-id", id);
+  el.root.setAttribute("data-category-id", categoryId)
   el.root.setAttribute("data-item-name", name);
   el.root.setAttribute("data-item-price", price);
   el.root.dataset.action = "select-item";

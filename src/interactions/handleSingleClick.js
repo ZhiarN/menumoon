@@ -1,9 +1,9 @@
+import { removeCategory } from "../actions/categoryActions.js";
+import {removeItem} from "../actions/itemActions.js"
 import { updateState } from "../actions/updateState.js";
 import { state } from "../state/store.js";
-
 export function handleSingleClick(card) {
 	const action = card.dataset.action;
-
 	switch (action) {
 		case "select-category": {
 			const id = card.dataset.categoryId;
@@ -20,6 +20,15 @@ export function handleSingleClick(card) {
 			const isSame = id === state.selectedItemID;
 
 			state.selectedItemID = isSame ? "null" : id;
+			return;
+		}
+		case "remove-category": {
+			removeCategory(state.editingCategoryID);
+			return;
+		}
+
+		case "remove-item": {
+			removeItem(state.editingCategoryID, state.editingItemID);
 			return;
 		}
 
