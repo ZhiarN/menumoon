@@ -28,7 +28,7 @@ export function handleSingleClick(card) {
 		}
 
 		case "remove-item": {
-			removeItem(state.editingCategoryID, state.editingItemID);
+			removeItem(state.editingItemID);
 			return;
 		}
 
