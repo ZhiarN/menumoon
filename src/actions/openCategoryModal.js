@@ -20,7 +20,11 @@ export function openCategoryModal(card) {
 	modal.imageInput.addEventListener("change", () => {
 		const file = modal.imageInput.files[0];
 		if (!file) return;
-		modal.imagePreview.src = URL.createObjectURL(file);
+		const imageUrl = URL.createObjectURL(file);
+		modal.imagePreview.src = imageUrl;
+		modal.imagePreview.onload = () => {
+			URL.revokeObjectURL(imageUrl)
+		}
 	})
 	modal.modalTitle.textContent = "Edit Category";
 	modal.submitButton.textContent = "Update";
@@ -36,8 +40,9 @@ export function openCategoryModal(card) {
 	dialog.addEventListener("submit", async (event) => {
 		event.preventDefault();
 		const file = modal.imageInput.files[0];
-    	const newImage = await fileToDataURL(file);
-		updateCategory(card.dataset.categoryId, modal.categoryNameInput.value, newImage)
+		const newName = modal.categoryNameInput.value
+    	const newImageUrl = file ? await fileToDataURL(file) : undefined;
+		updateCategory(card.dataset.categoryId, newName, newImageUrl)
 		close();
 	})
 

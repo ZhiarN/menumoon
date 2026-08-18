@@ -18,7 +18,11 @@ export function openItemModal(card) {
 	}
 	modal.itemImageInput.addEventListener("change", () => {
 		const file = modal.itemImageInput.files[0];
-		modal.itemImagePreview.src = URL.createObjectURL(file)
+		const imageUrl = URL.createObjectURL(file);
+		modal.itemImagePreview.src = imageUrl;
+		modal.imagePreview.onload = () => {
+			URL.revokeObjectURL(imageUrl);
+		}
 	})
 
 	const close = () => {
@@ -30,7 +34,7 @@ export function openItemModal(card) {
 	dialog.addEventListener("submit", async (event) => {
 		event.preventDefault();
 		const file = modal.itemImageInput.files[0];
-		const newImageUrl = await fileToDataURL(file);
+		const newImageUrl = file ? await fileToDataURL(file) : undefined;
 		const newName = modal.itemNameInput.value;
 		const newPrice = modal.itemPriceInput.value;
 		updateItem(card.dataset.itemId, newName, newPrice, newImageUrl)
