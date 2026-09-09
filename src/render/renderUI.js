@@ -4,6 +4,8 @@ import { renderCategories } from "./renderCategories.js";
 import { renderMenu } from "./renderMenu.js";
 
 export function renderUI() {
+	console.log(state)
+
 	const categories = menuStore?.categories;
 	if (!categories) return console.error("Menu is empty. default menu failed to load.")
 		renderCategories(menuStore.categories);
