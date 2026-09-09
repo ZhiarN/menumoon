@@ -4,22 +4,21 @@ import { state } from "../state/store.js";
 
 export function removeCategory(categoryId) {
 	if (categoryId == null) return console.error("No category element selected for removing.");
-	const index = menuStore.findIndex(
+	const index = menuStore.categories.findIndex(
 		(cat) => cat.id === categoryId
 	);
 	if (index === -1) return;
-	menuStore.splice(index, 1);
+	menuStore.categories.splice(index, 1);
 	state.editingCategoryID = null;
 	renderUI();
 }
 
 export function addCategory(newName, newImage) {
 	const newCategory = {
-		id: `cat${menuStore.categories.length + 1}`,
+		id: crypto.randomUUID(),
 		name: newName,
 		image: newImage,
-		items: [],
 	};
-	menuStore.push(newCategory);
+	menuStore.categories.push(newCategory);
 	renderUI();
 }

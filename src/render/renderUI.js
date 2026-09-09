@@ -4,11 +4,19 @@ import { renderCategories } from "./renderCategories.js";
 import { renderMenu } from "./renderMenu.js";
 
 export function renderUI() {
-	console.log(menuStore)
-	const selectedCategory =
-		menuStore.find((cat) => cat.id === state.selectedCategoryID) ||
-		menuStore[0];
+	console.log(state)
 
-	renderCategories(menuStore ?? []);
-	renderMenu(selectedCategory?.items ?? []);
+	const categories = menuStore?.categories;
+	if (!categories) return console.error("Menu is empty. default menu failed to load.")
+		renderCategories(menuStore.categories);
+	const selectedCategory =
+	menuStore.categories.find((cat) => cat.id === state.selectedCategoryID) ||
+	menuStore.categories[0];
+		if (!selectedCategory) {
+			renderMenu([]);
+			return;
+		}
+
+		const items = menuStore.items?.filter(item => item.categoryId === selectedCategory.id);
+	renderMenu(items);
 }

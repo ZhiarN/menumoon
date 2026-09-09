@@ -9,4 +9,5 @@ export const dom = {
 	categoryTemplate: document.getElementById("category-card-template") || "",
 	categoryModalTemplate: document.getElementById("category-modal-template"),
 	itemModalTemplate: document.getElementById("item-modal-template"),
+	addNewButtonTemplate: document.querySelector("#add-new-button-template")
 };

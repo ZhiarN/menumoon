@@ -111,8 +111,8 @@ ul {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: var(--space-sm);
 	border-radius: var(--default-radius);
-	padding: var(--space-sm);
 	background: transparent;
 	position: relative;
 	border: 2px dashed transparent;
@@ -121,6 +121,7 @@ ul {
 		box-shadow 250ms ease,
 		border-color 250ms ease;
 	width: min(200px, 33vw);
+	height: 100%;
 	scroll-snap-align: start;
 	color: inherit;
 }
@@ -129,11 +130,12 @@ ul {
 	aspect-ratio: 1 / 1;
 	display: block;
 	object-fit: cover;
+	border-radius: var(--default-radius);
 	max-width: 100%;
 }
 .category-card__name {
 	font-size: var(--font-size-lg);
-	font-weight: 600;
+	font-weight: 900;
 	text-align: center;
 	color: inherit;
 }
@@ -153,7 +155,7 @@ ul {
 	border-radius: var(--default-radius);
 	gap: var(--space-sm);
 	height: auto;
-	min-height: 250px;
+	max-height: fit-content;
 	overflow: hidden;
 	position: relative;
 	border: 2px dashed transparent;
@@ -163,12 +165,6 @@ ul {
 		border-color 250ms ease;
 	background: var(--color-secondary);
 }
-/* .item-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 6px 14px rgba(0, 0, 0, 0.35),
-    0 14px 34px rgba(0, 0, 0, 0.45);
-} */
 .item-card__image {
 	aspect-ratio: 1 / 1;
 	max-width: 100%;
@@ -431,4 +427,33 @@ ul {
 }
 .img-tip {
 	text-align: center;
+}
+
+.add-button {
+display: flex;
+align-items: center;
+justify-content: center;
+justify-self: center;
+border-radius: var(--default-radius);
+	background: transparent;
+	border: none;
+	width: min(150px, 33vw);
+	height: auto;
+	scroll-snap-align: start;
+	color: inherit;
+}
+
+.plus-svg {
+	aspect-ratio: 1/1;
+	display: block;
+	max-width: 100%;
+	min-width: 100px;
+	color:var(--color-accent);
+	height: auto;
+			transition: transform 100ms ease ;
+		&:hover {
+			cursor: pointer;
+			transform: scale(0.95);
+		}
+
 }
